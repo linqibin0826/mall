@@ -1,0 +1,36 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: product_route
+          uri: lb://cloud-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+
+        - id: third_party_route
+          uri: lb://cloud-third-party
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty/(?<segment>/?.*), /$\{segment}
+
+        - id: admin_route
+          # 负载均衡到该模块，后面写的是模块名。
+          uri: lb://renren-fast
+          predicates:
+            # 断言，让所有带/api的路径都转发到 renren-fast模块
+            - Path=/api/**
+          filters:
+            # 路径重写,访问默认需要加上context-path
+            - RewritePath=/api/(?<segment>/?.*), /renren-fast/$\{segment}
+
+
+  application:
+    name: cloud-gateway
+server:
+  port: 88
