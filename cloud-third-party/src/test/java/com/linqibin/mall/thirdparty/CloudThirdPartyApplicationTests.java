@@ -26,7 +26,7 @@ public class CloudThirdPartyApplicationTests {
 	@Test
 	public void test1() throws FileNotFoundException {
 		FileInputStream stream = new FileInputStream("C:\\Users\\Administrator\\Pictures\\电子照片\\beauty_20201012174823.jpg");
-		ossClient.putObject("shoppingmall-hugh", "beauty_20201012174823.jpg", stream);
+		ossClient.putObject("mall-hugh", "beauty_20201012174823.jpg", stream);
 
 		ossClient.shutdown();
 

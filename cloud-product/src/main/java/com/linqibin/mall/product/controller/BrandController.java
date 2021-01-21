@@ -3,7 +3,10 @@ package com.linqibin.mall.product.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.linqibin.common.valid.addGroup;
+import com.linqibin.common.valid.updateGroup;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +18,7 @@ import com.linqibin.mall.product.service.BrandService;
 import com.linqibin.common.utils.PageUtils;
 import com.linqibin.common.utils.R;
 
-
+import javax.validation.Valid;
 
 /**
  * 品牌
@@ -36,7 +39,6 @@ public class BrandController {
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = brandService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
@@ -55,9 +57,8 @@ public class BrandController {
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody BrandEntity brand){
-		brandService.save(brand);
-
+    public R save(@Validated(value = {addGroup.class}) @RequestBody BrandEntity brand){
+        brandService.save(brand);
         return R.ok();
     }
 
@@ -65,7 +66,7 @@ public class BrandController {
      * 修改
      */
     @RequestMapping("/update")
-    public R update(@RequestBody BrandEntity brand){
+    public R update(@Validated(value = {updateGroup.class}) @RequestBody BrandEntity brand){
 		brandService.updateById(brand);
 
         return R.ok();

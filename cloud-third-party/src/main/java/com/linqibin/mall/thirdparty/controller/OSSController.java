@@ -4,6 +4,7 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.common.utils.BinaryUtil;
 import com.aliyun.oss.model.MatchMode;
 import com.aliyun.oss.model.PolicyConditions;
+import com.linqibin.common.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,7 @@ public class OSSController {
     private String bucket;
 
     @RequestMapping("/oss/policy")
-    public Map<String, String> policy() {
+    public R policy() {
         // host的格式为 bucketname.endpoint
         String host = "https://" + bucket + "." + endpoint;
         // callbackUrl为 上传回调服务器的URL，请将下面的IP和Port配置为您自己的真实信息。
@@ -66,23 +67,9 @@ public class OSSController {
             respMap.put("dir", dir);
             respMap.put("host", host);
             respMap.put("expire", String.valueOf(expireEndTime / 1000));
-            // respMap.put("expire", formatISO8601Date(expiration));
-
-            /*
-            JSONObject jasonCallback = new JSONObject();
-            jasonCallback.put("callbackUrl", callbackUrl);
-            jasonCallback.put("callbackBody",
-                    "filename=${object}&size=${size}&mimeType=${mimeType}&height=${imageInfo.height}&width=${imageInfo.width}");
-            jasonCallback.put("callbackBodyType", "application/x-www-form-urlencoded");
-            String base64CallbackBody = BinaryUtil.toBase64String(jasonCallback.toString().getBytes());
-            respMap.put("callback", base64CallbackBody);
-
-            JSONObject ja1 = JSONObject.fromObject(respMap);
-           */
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return respMap;
+        return R.ok().put("data", respMap);
     }
 }

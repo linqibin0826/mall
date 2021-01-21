@@ -4,8 +4,13 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
-import java.util.Date;
+
+import com.linqibin.common.valid.addGroup;
+import com.linqibin.common.valid.updateGroup;
 import lombok.Data;
+import org.hibernate.validator.constraints.URL;
+
+import javax.validation.constraints.*;
 
 /**
  * 品牌
@@ -23,14 +28,19 @@ public class BrandEntity implements Serializable {
 	 * 品牌id
 	 */
 	@TableId
+	@Null(message = "不可指定品牌ID", groups = {addGroup.class})
+	@NotNull(message = "品牌ID不可以为空", groups = {updateGroup.class})
 	private Long brandId;
 	/**
 	 * 品牌名
 	 */
+	@NotBlank(message = "品牌名不可为空", groups = {addGroup.class, updateGroup.class})
 	private String name;
 	/**
 	 * 品牌logo地址
 	 */
+	@NotBlank(groups = {addGroup.class})
+	@URL(message = "logo必须是一个合法的url地址", groups = {addGroup.class, updateGroup.class})
 	private String logo;
 	/**
 	 * 介绍
@@ -39,14 +49,19 @@ public class BrandEntity implements Serializable {
 	/**
 	 * 显示状态[0-不显示；1-显示]
 	 */
+	@NotNull(groups = {addGroup.class})
 	private Integer showStatus;
 	/**
 	 * 检索首字母
 	 */
+	@NotBlank(groups = {addGroup.class})
+	@Pattern(regexp = "^[a-zA-Z]{1}$", message = "检索首字母字段不合法", groups = {addGroup.class, updateGroup.class})
 	private String firstLetter;
 	/**
 	 * 排序
 	 */
+	@NotNull(groups = {addGroup.class})
+	@Min(value = 0, message = "排序字段必须是正整数", groups = {addGroup.class, updateGroup.class})
 	private Integer sort;
 
 }
