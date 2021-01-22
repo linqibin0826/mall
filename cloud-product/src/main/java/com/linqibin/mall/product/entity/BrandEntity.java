@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 
+import com.linqibin.common.valid.ListValue;
 import com.linqibin.common.valid.addGroup;
 import com.linqibin.common.valid.updateGroup;
 import lombok.Data;
@@ -49,6 +50,7 @@ public class BrandEntity implements Serializable {
 	/**
 	 * 显示状态[0-不显示；1-显示]
 	 */
+	@ListValue(vals = {0, 1}, groups = {addGroup.class, updateGroup.class})
 	@NotNull(groups = {addGroup.class})
 	private Integer showStatus;
 	/**
