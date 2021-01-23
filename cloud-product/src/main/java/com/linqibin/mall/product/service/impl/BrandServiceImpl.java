@@ -11,6 +11,7 @@ import com.linqibin.common.utils.Query;
 
 import com.linqibin.mall.product.dao.BrandDao;
 import com.linqibin.mall.product.entity.BrandEntity;
+import org.springframework.util.StringUtils;
 
 
 @Service("brandService")
@@ -18,10 +19,16 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<BrandEntity> iPage = new Query<BrandEntity>().getPage(params);
+
+        QueryWrapper<BrandEntity> queryWrapper = new QueryWrapper<>();
+        String key = (String) params.get("key");
+        if (!StringUtils.isEmpty(key)) {
+            queryWrapper.eq("brand_id", key).or().like("name", key);
+        }
+
         IPage<BrandEntity> page = this.page(
-                iPage,
-                new QueryWrapper<BrandEntity>()
+                new Query<BrandEntity>().getPage(params),
+                queryWrapper
         );
         return new PageUtils(page);
     }

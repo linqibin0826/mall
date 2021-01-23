@@ -48,7 +48,9 @@ public class AttrGroupController {
     @RequestMapping("/info/{attrGroupId}")
     public R info(@PathVariable("attrGroupId") Long attrGroupId){
 		AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
-
+		// 分类级联选择器路径
+        attrGroup.setCatalogPath(attrGroupService.getCatalogPath(attrGroup.getCatalogId()));
+        System.out.println(Arrays.asList(attrGroup.getCatalogPath()));
         return R.ok().put("attrGroup", attrGroup);
     }
 
