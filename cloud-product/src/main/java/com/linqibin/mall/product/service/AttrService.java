@@ -3,6 +3,8 @@ package com.linqibin.mall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.linqibin.common.utils.PageUtils;
 import com.linqibin.mall.product.entity.AttrEntity;
+import com.linqibin.mall.product.vo.AttrRespVo;
+import com.linqibin.mall.product.vo.AttrVo;
 
 import java.util.Map;
 
@@ -16,5 +18,15 @@ import java.util.Map;
 public interface AttrService extends IService<AttrEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void saveAttr(AttrVo attrVo);
+
+    PageUtils queryBaseAttrPage(Map<String, Object> params, Long catalogId, String type);
+
+    AttrRespVo getAttrInfo(Long attrId);
+
+    void updateAttr(AttrVo attrVo);
+
+    PageUtils getNoRelationsAttr(Map<String, Object> params, Long attrGroupId);
 }
 

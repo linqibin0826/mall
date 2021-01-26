@@ -1,14 +1,14 @@
 package com.linqibin.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import com.linqibin.mall.product.entity.AttrAttrgroupRelationEntity;
+import com.linqibin.mall.product.entity.AttrEntity;
+import com.linqibin.mall.product.service.AttrService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.linqibin.mall.product.entity.AttrGroupEntity;
 import com.linqibin.mall.product.service.AttrGroupService;
@@ -30,6 +30,36 @@ public class AttrGroupController {
     @Autowired
     private AttrGroupService attrGroupService;
 
+    @Autowired
+    private AttrService attrService;
+
+    /**
+     * 查找指定属性分组Id下的所有基本属性
+     */
+    @GetMapping("{attrGroupId}/attr/relation")
+    public R attrRelations(@PathVariable("attrGroupId") Long attrGroupId) {
+        List<AttrEntity> data = attrGroupService.getRelationByGroupId(attrGroupId);
+        return R.ok().put("data", data);
+    }
+
+    /**
+     * 查询指定属性分组Id下所有可关联基本属性
+     */
+    @GetMapping("{attrGroupId}/noattr/relation")
+    public R attrNoRelations(@RequestParam Map<String, Object> params,
+                             @PathVariable("attrGroupId") Long attrGroupId) {
+        PageUtils page = attrService.getNoRelationsAttr(params, attrGroupId);
+        return R.ok().put("page", page);
+    }
+
+    @PostMapping("/attr/relation")
+    public R addRelation(@RequestBody List<AttrAttrgroupRelationEntity> relations) {
+        attrGroupService.addRelation(relations);
+        return R.ok();
+    }
+
+
+
     /**
      * 列表
      */
@@ -37,7 +67,6 @@ public class AttrGroupController {
     public R list(@RequestParam Map<String, Object> params,
                   @PathVariable("catalogId") Long catalogId){
         PageUtils page = attrGroupService.queryPage(params, catalogId);
-
         return R.ok().put("page", page);
     }
 
@@ -49,8 +78,7 @@ public class AttrGroupController {
     public R info(@PathVariable("attrGroupId") Long attrGroupId){
 		AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
 		// 分类级联选择器路径
-        attrGroup.setCatalogPath(attrGroupService.getCatalogPath(attrGroup.getCatalogId()));
-        System.out.println(Arrays.asList(attrGroup.getCatalogPath()));
+        attrGroup.setCatalogPath(attrGroupService.findCatalogPath(attrGroup.getCatalogId()));
         return R.ok().put("attrGroup", attrGroup);
     }
 
@@ -71,6 +99,13 @@ public class AttrGroupController {
     public R update(@RequestBody AttrGroupEntity attrGroup){
 		attrGroupService.updateById(attrGroup);
 
+        return R.ok();
+    }
+
+    @PostMapping("/attr/relation/delete")
+    public R deleteRelations(@RequestBody List<AttrAttrgroupRelationEntity> relations) {
+        System.out.println(relations);
+        attrGroupService.deleteRelations(relations);
         return R.ok();
     }
 

@@ -2,8 +2,11 @@ package com.linqibin.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.linqibin.common.utils.PageUtils;
+import com.linqibin.mall.product.entity.AttrAttrgroupRelationEntity;
+import com.linqibin.mall.product.entity.AttrEntity;
 import com.linqibin.mall.product.entity.AttrGroupEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,6 +28,21 @@ public interface AttrGroupService extends IService<AttrGroupEntity> {
      * @author hugh &you
      * @since 2021 /1/23 12:13
      */
-    Long[] getCatalogPath(Long catalogId);
+    Long[] findCatalogPath(Long catalogId);
+
+    /**
+     * Gets relation by group id.
+     *
+     * @param attrGroupId the attr group id
+     * @return the relation by group id
+     * @author hugh &you
+     * @since 2021 /1/26 16:27
+     */
+    List<AttrEntity> getRelationByGroupId(Long attrGroupId);
+
+
+    void deleteRelations(List<AttrAttrgroupRelationEntity> relations);
+
+    void addRelation(List<AttrAttrgroupRelationEntity> relations);
 }
 

@@ -1,6 +1,8 @@
 package com.linqibin.mall.product.service.impl;
 
+import com.linqibin.mall.product.service.CategoryBrandRelationService;
 import com.linqibin.mall.product.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +17,13 @@ import com.linqibin.common.utils.Query;
 
 import com.linqibin.mall.product.dao.CategoryDao;
 import com.linqibin.mall.product.entity.CategoryEntity;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
+
+    @Autowired
+    CategoryBrandRelationService categoryBrandRelationService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -52,6 +58,14 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     public void removeCategoriesByIds(List<Long> asList) {
         // TODO 检查当前删除的分类,是否被其他地方引用
         baseMapper.deleteBatchIds(asList);
+    }
+
+
+    @Override
+    @Transactional
+    public void updateCascade(CategoryEntity category) {
+        this.updateById(category);
+        categoryBrandRelationService.updateCatalogName(category.getCatId(), category.getName());
     }
 
     /**

@@ -6,18 +6,21 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.linqibin.common.utils.PageUtils;
 import com.linqibin.common.utils.Query;
 import com.linqibin.mall.product.dao.AttrGroupDao;
+import com.linqibin.mall.product.entity.AttrAttrgroupRelationEntity;
+import com.linqibin.mall.product.entity.AttrEntity;
 import com.linqibin.mall.product.entity.AttrGroupEntity;
 import com.linqibin.mall.product.entity.CategoryEntity;
+import com.linqibin.mall.product.service.AttrAttrgroupRelationService;
 import com.linqibin.mall.product.service.AttrGroupService;
+import com.linqibin.mall.product.service.AttrService;
 import com.linqibin.mall.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service("attrGroupService")
@@ -25,6 +28,12 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private AttrAttrgroupRelationService relationService;
+
+    @Autowired
+    private AttrService attrService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params, Long catalogId) {
@@ -51,7 +60,7 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
     }
 
     @Override
-    public Long[] getCatalogPath(Long catalogId) {
+    public Long[] findCatalogPath(Long catalogId) {
         List<Long> longs = new ArrayList<>();
         CategoryEntity byId = categoryService.getById(catalogId);
         Long parentCid = byId.getParentCid();
@@ -62,5 +71,28 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         }
         Collections.reverse(longs);
         return longs.toArray(new Long[longs.size()]);
+    }
+
+    @Override
+    public List<AttrEntity> getRelationByGroupId(Long attrGroupId) {
+        List<AttrAttrgroupRelationEntity> relationEntities = relationService.list(new QueryWrapper<AttrAttrgroupRelationEntity>().eq("attr_group_id", attrGroupId));
+
+        List<AttrEntity> attrEntities = null;
+        if (CollectionUtils.isEmpty(attrEntities)) {
+            List<Long> attrIds = relationEntities.stream().map(relation -> relation.getAttrId()).collect(Collectors.toList());
+            attrEntities = (List<AttrEntity>) attrService.listByIds(attrIds);
+        }
+
+        return attrEntities;
+    }
+
+    @Override
+    public void deleteRelations(List<AttrAttrgroupRelationEntity> relations) {
+        relationService.deleteBatchRelations(relations);
+    }
+
+    @Override
+    public void addRelation(List<AttrAttrgroupRelationEntity> relations) {
+        relationService.saveBatch(relations);
     }
 }

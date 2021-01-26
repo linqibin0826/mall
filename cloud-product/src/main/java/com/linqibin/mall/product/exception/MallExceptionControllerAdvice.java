@@ -31,9 +31,9 @@ public class MallExceptionControllerAdvice {
                 .put("data", map);
     }
 
-    @ExceptionHandler(Throwable.class)
+    /*@ExceptionHandler(Throwable.class)
     public R handleException(Throwable throwable) {
         return R.error(BizCodeEnum.UNKNOWN_EXCEPTION.getCode(),
                 BizCodeEnum.UNKNOWN_EXCEPTION.getMsg());
-    }
+    }*/
 }
