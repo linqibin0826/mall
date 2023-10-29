@@ -6,6 +6,7 @@ import com.linqibin.mall.product.entity.AttrEntity;
 import com.linqibin.mall.product.vo.AttrRespVo;
 import com.linqibin.mall.product.vo.AttrVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +27,8 @@ public interface AttrService extends IService<AttrEntity> {
     AttrRespVo getAttrInfo(Long attrId);
 
     void updateAttr(AttrVo attrVo);
+
+    List<AttrEntity> getRelationAttr(Long attrgroupId);
 
     PageUtils getNoRelationsAttr(Map<String, Object> params, Long attrGroupId);
 }

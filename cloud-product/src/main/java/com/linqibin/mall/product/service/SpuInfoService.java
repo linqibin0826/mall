@@ -3,6 +3,7 @@ package com.linqibin.mall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.linqibin.common.utils.PageUtils;
 import com.linqibin.mall.product.entity.SpuInfoEntity;
+import com.linqibin.mall.product.vo.SpuSaveVo;
 
 import java.util.Map;
 
@@ -16,5 +17,15 @@ import java.util.Map;
 public interface SpuInfoService extends IService<SpuInfoEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void saveSpuInfo(SpuSaveVo spuSaveVo);
+
+
+    /**
+     * SPU模糊查询
+     */
+    PageUtils queryPageByCondition(Map<String, Object> params);
+
+    void saveBatchSpuInfo(SpuInfoEntity spuInfoEntity);
 }
 

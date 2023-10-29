@@ -24,9 +24,6 @@ public class OSSController {
     @Value("${spring.cloud.alicloud.access-key}")
     private String accessId;
 
-    @Value("${spring.cloud.alicloud.secret-key}")
-    private String accessKey;
-
     @Value("${spring.cloud.alicloud.oss.endpoint}")
     private String endpoint;
 

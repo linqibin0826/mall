@@ -10,7 +10,7 @@ import lombok.Data;
 
 /**
  * 属性分组
- * 
+ *
  * @author hugh
  * @email linqibin0826@gmail.com
  * @date 2021-01-08 22:12:57
@@ -44,7 +44,7 @@ public class AttrGroupEntity implements Serializable {
 	/**
 	 * 所属分类id
 	 */
-	private Long catalogId;
+	private Long catelogId;
 
 	/**
 	 * catalog-cascader回显路径,

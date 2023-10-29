@@ -5,6 +5,13 @@ spring:
         server-addr: 127.0.0.1:8848
     gateway:
       routes:
+        - id: member_route
+          uri: lb://cloud-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+
         - id: product_route
           uri: lb://cloud-product
           predicates:
@@ -15,9 +22,16 @@ spring:
         - id: third_party_route
           uri: lb://cloud-third-party
           predicates:
-            - Path=/api/thirdparty/**
+            - Path=/api/third/party/**
           filters:
-            - RewritePath=/api/thirdparty/(?<segment>/?.*), /$\{segment}
+            - RewritePath=/api/third/party/(?<segment>/?.*), /$\{segment}
+
+        - id: ware_route
+          uri: lb://cloud-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            - RewritePath=/api/(?<segment>.*), /$\{segment}
 
         - id: admin_route
           # 负载均衡到该模块，后面写的是模块名。

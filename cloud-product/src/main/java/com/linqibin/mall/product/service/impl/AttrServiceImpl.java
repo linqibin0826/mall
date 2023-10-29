@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.linqibin.common.constant.ProductConstant;
 import com.linqibin.common.utils.PageUtils;
 import com.linqibin.common.utils.Query;
+import com.linqibin.mall.product.dao.AttrAttrgroupRelationDao;
 import com.linqibin.mall.product.dao.AttrDao;
 import com.linqibin.mall.product.entity.AttrAttrgroupRelationEntity;
 import com.linqibin.mall.product.entity.AttrEntity;
@@ -25,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -32,6 +34,10 @@ import java.util.stream.Collectors;
 
 @Service("attrService")
 public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements AttrService {
+
+    @Resource
+    private AttrAttrgroupRelationDao relationDao;
+
 
     @Autowired
     AttrAttrgroupRelationService attrAttrgroupRelationService;
@@ -79,7 +85,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         // 拼接查询条件
         // 1). ID
         if (catalogId != 0) {
-            queryWrapper.eq("catalog_id", catalogId);
+            queryWrapper.eq("catelog_id", catalogId);
         }
         // 2). 模糊查询
         if (!StringUtils.isEmpty(key)) {
@@ -98,7 +104,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
             AttrRespVo attrRespVo = new AttrRespVo();
             BeanUtils.copyProperties(attrEntity, attrRespVo);
             // 1.查询分类名称.
-            CategoryEntity categoryEntity = categoryService.getById(attrEntity.getCatalogId());
+            CategoryEntity categoryEntity = categoryService.getById(attrEntity.getCatelogId());
             if (categoryEntity != null) {
                 String catalogName = categoryEntity.getName();
                 attrRespVo.setCatalogName(catalogName);
@@ -129,7 +135,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         BeanUtils.copyProperties(attrEntity, attrRespVo);
 
         // 查找分类完整路径
-        Long catalogId = attrEntity.getCatalogId();
+        Long catalogId = attrEntity.getCatelogId();
         Long[] catalogPath = attrGroupService.findCatalogPath(catalogId);
         attrRespVo.setCatalogPath(catalogPath);
 
@@ -185,15 +191,29 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         }
     }
 
+    /**
+     * 根据分组id查找关联属性
+     */
+    @Override
+    public List<AttrEntity> getRelationAttr(Long attrgroupId) {
+        List<AttrAttrgroupRelationEntity> entities = relationDao.selectList(new QueryWrapper<AttrAttrgroupRelationEntity>().eq("attr_group_id", attrgroupId));
+        List<Long> attrIds = entities.stream().map((attr) -> attr.getAttrId()).collect(Collectors.toList());
+        // 根据这个属性查询到的id可能是空的
+        if(attrIds == null || attrIds.size() == 0){
+            return null;
+        }
+        return baseMapper.selectBatchIds(attrIds);
+    }
+
     @Override
     public PageUtils getNoRelationsAttr(Map<String, Object> params, Long attrGroupId) {
         // 1.当前分组只能关联属于这个分类下的所有基本属性(销售属性不属于分组)
         AttrGroupEntity groupEntity = attrGroupService.getById(attrGroupId);
-        Long catalogId = groupEntity.getCatalogId();
+        Long catalogId = groupEntity.getCatelogId();
         // 2.当前分组只能关联那些没有被别的分组所引用的属性.(一个基本属性只能属于一个分组)
         // 2.1) 先查询当前这个分类下其他所有的分组
         List<AttrGroupEntity> groups = attrGroupService.list(new QueryWrapper<AttrGroupEntity>().eq("catalog_id", catalogId));
-        List<Long> attrGroupIds = groups.stream().map(group -> group.getAttrGroupId()).collect(Collectors.toList());
+        List<Long> attrGroupIds = groups.stream().map(AttrGroupEntity::getAttrGroupId).collect(Collectors.toList());
         // 2.2) 然后查询这些分组所关联过的所有属性.
         List<AttrAttrgroupRelationEntity> relationEntities = attrAttrgroupRelationService.list(
                 new QueryWrapper<AttrAttrgroupRelationEntity>().in("attr_group_id", attrGroupIds));

@@ -23,7 +23,7 @@ import com.linqibin.common.utils.R;
  * @date 2021-01-08 22:12:57
  */
 @RestController
-@RequestMapping("product/category")
+@RequestMapping("/product/category")
 public class CategoryController {
 
     @Autowired
@@ -35,7 +35,6 @@ public class CategoryController {
     @RequestMapping("/list/tree")
     public R list(){
         List<CategoryEntity> entities = categoryService.listWithTree();
-
         return R.ok().put("data", entities);
     }
 

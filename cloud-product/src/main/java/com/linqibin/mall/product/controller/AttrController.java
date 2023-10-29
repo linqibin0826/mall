@@ -1,8 +1,11 @@
 package com.linqibin.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import com.linqibin.mall.product.entity.ProductAttrValueEntity;
+import com.linqibin.mall.product.service.ProductAttrValueService;
 import com.linqibin.mall.product.vo.AttrRespVo;
 import com.linqibin.mall.product.vo.AttrVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +32,25 @@ public class AttrController {
     private AttrService attrService;
 
 
+    @Autowired
+    private ProductAttrValueService productAttrValueService;
+
     @GetMapping("/{attrType}/list/{catalogId}")
     public R baseAttrList(@RequestParam Map<String, Object> params,
                           @PathVariable("catalogId") Long catalogId,
                           @PathVariable("attrType") String type) {
         PageUtils page = attrService.queryBaseAttrPage(params, catalogId, type);
         return R.ok().put("page", page);
+    }
+
+
+    /**
+     * 查询属性规格
+     */
+    @GetMapping("/base/listforspu/{spuId}")
+    public R baseAttrListForSpu(@PathVariable("spuId") Long spuId){
+        List<ProductAttrValueEntity> entities = productAttrValueService.baseAttrListForSpu(spuId);
+        return R.ok().put("data", entities);
     }
 
     /**

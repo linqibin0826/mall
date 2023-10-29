@@ -5,6 +5,7 @@ import com.linqibin.mall.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -42,16 +43,14 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
         // 2.组装成父子类型的树形结构
         //   1).找到所有的一级分类
-        List<CategoryEntity> levelOneCategories = allCategory.stream()
+        return allCategory.stream()
                 .filter(categoryEntity -> categoryEntity.getParentCid() == 0)
-                .map(levelOneCategory -> {
+                .peek(levelOneCategory -> {
                     // 2).找到子分类等
                     levelOneCategory.setChildren(getChildCategories(levelOneCategory, allCategory));
-                    return levelOneCategory;
                 })
-                .sorted((category1, category2) -> (category1.getSort() == null ? 0 : category1.getSort()) - (category2.getSort() == null ? 0 : category2.getSort()))
+                .sorted(Comparator.comparingInt(category -> (category.getSort() == null ? 0 : category.getSort())))
                 .collect(Collectors.toList());
-        return levelOneCategories;
     }
 
     @Override
@@ -78,13 +77,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         return allCategory.stream()
                 // 根据父ID过滤,查找出所有二级分类
                 .filter(categoryEntity -> categoryEntity.getParentCid().equals(parentCategory.getCatId()))
-                .map(categoryEntity -> {
+                .peek(categoryEntity -> {
                     // 1.调用递归, 查找出所有三级分类, 以此类推.
                     categoryEntity.setChildren(getChildCategories(categoryEntity, allCategory));
-                    return categoryEntity;
                 })
                 // 排序
-                .sorted((category1, category2) -> (category1.getSort() == null ? 0 : category1.getSort()) - (category2.getSort() == null ? 0 : category2.getSort()))
+                .sorted(Comparator.comparingInt(category -> (category.getSort() == null ? 0 : category.getSort())))
                 .collect(Collectors.toList());
     }
 }

@@ -31,26 +31,25 @@ public class SkuInfoController {
     private SkuInfoService skuInfoService;
 
     /**
-     * 列表
+     * SKU查询
      */
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = skuInfoService.queryPage(params);
+        PageUtils page = skuInfoService.queryPageByCondition(params);
 
         return R.ok().put("page", page);
     }
 
-
     /**
      * 信息
+     * 		库存保存的时候会远程调用这个接口
      */
     @RequestMapping("/info/{skuId}")
     public R info(@PathVariable("skuId") Long skuId){
-		SkuInfoEntity skuInfo = skuInfoService.getById(skuId);
+        SkuInfoEntity skuInfo = skuInfoService.getById(skuId);
 
         return R.ok().put("skuInfo", skuInfo);
     }
-
     /**
      * 保存
      */

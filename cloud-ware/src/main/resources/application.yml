@@ -1,18 +1,18 @@
 server:
-  port: 11000
+  port: 12000
 
 spring:
   datasource:
     username: root
-    password: root
-    url: jdbc:mysql://192.168.56.10:3306/shoppingmall_wms
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/mall_wms
     driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
   application:
-    name: mall-ware
+    name: cloud-ware
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml

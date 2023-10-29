@@ -20,6 +20,7 @@
         <module>renren-fast</module>
         <module>cloud-common</module>
         <module>cloud-gateway</module>
+        <module>cloud-third-party</module>
     </modules>
 
 </project>

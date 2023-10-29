@@ -5,6 +5,7 @@ import com.linqibin.common.utils.PageUtils;
 import com.linqibin.mall.product.entity.AttrAttrgroupRelationEntity;
 import com.linqibin.mall.product.entity.AttrEntity;
 import com.linqibin.mall.product.entity.AttrGroupEntity;
+import com.linqibin.mall.product.vo.AttrGroupWithAttrsVo;
 
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,9 @@ import java.util.Map;
 public interface AttrGroupService extends IService<AttrGroupEntity> {
 
     PageUtils queryPage(Map<String, Object> params, Long catalogId);
+
+    List<AttrGroupWithAttrsVo> getAttrGroupWithAttrByCatelogId(Long catelogId);
+
 
     /**
      * 查找目录的完整路径  e.g. [2, 34, 225]

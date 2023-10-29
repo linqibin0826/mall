@@ -7,6 +7,7 @@ import java.util.Map;
 import com.linqibin.mall.product.entity.AttrAttrgroupRelationEntity;
 import com.linqibin.mall.product.entity.AttrEntity;
 import com.linqibin.mall.product.service.AttrService;
+import com.linqibin.mall.product.vo.AttrGroupWithAttrsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,6 +41,14 @@ public class AttrGroupController {
     public R attrRelations(@PathVariable("attrGroupId") Long attrGroupId) {
         List<AttrEntity> data = attrGroupService.getRelationByGroupId(attrGroupId);
         return R.ok().put("data", data);
+    }
+
+    @GetMapping("/{catelogId}/withattr")
+    public R getAttrGroupWithAttrs(@PathVariable("catelogId") Long catelogId){
+        // 1.查询当前分类下的所有属性分组
+        List<AttrGroupWithAttrsVo> vos = attrGroupService.getAttrGroupWithAttrByCatelogId(catelogId);
+        // 2.查询每个分组的所有信息
+        return R.ok().put("data", vos);
     }
 
     /**
@@ -78,7 +87,7 @@ public class AttrGroupController {
     public R info(@PathVariable("attrGroupId") Long attrGroupId){
 		AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
 		// 分类级联选择器路径
-        attrGroup.setCatalogPath(attrGroupService.findCatalogPath(attrGroup.getCatalogId()));
+        attrGroup.setCatalogPath(attrGroupService.findCatalogPath(attrGroup.getCatelogId()));
         return R.ok().put("attrGroup", attrGroup);
     }
 

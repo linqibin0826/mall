@@ -8,7 +8,7 @@ import lombok.Data;
 
 /**
  * 品牌分类关联
- * 
+ *
  * @author hugh
  * @email linqibin0826@gmail.com
  * @date 2021-01-08 22:12:57
@@ -19,7 +19,7 @@ public class CategoryBrandRelationEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 
+	 *
 	 */
 	@TableId
 	private Long id;
@@ -30,14 +30,16 @@ public class CategoryBrandRelationEntity implements Serializable {
 	/**
 	 * 分类id
 	 */
-	private Long catalogId;
+	private Long catelogId;
+	public static final String CATALOG_ID = "catelog_id";
+
 	/**
-	 * 
+	 *
 	 */
 	private String brandName;
 	/**
-	 * 
+	 *
 	 */
-	private String catalogName;
+	private String catelogName;
 
 }

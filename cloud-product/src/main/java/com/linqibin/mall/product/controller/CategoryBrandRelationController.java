@@ -3,10 +3,13 @@ package com.linqibin.mall.product.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.linqibin.mall.product.entity.BrandEntity;
 import com.linqibin.mall.product.entity.CategoryBrandRelationEntity;
 import com.linqibin.mall.product.service.CategoryBrandRelationService;
+import com.linqibin.mall.product.vo.BrandVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +39,18 @@ public class CategoryBrandRelationController {
         PageUtils page = categoryBrandRelationService.queryPage(params);
 
         return R.ok().put("page", page);
+    }
+
+    @GetMapping("/brands/list")
+    public R relationBrandsList(@RequestParam("catId") Long catId) {
+        List<BrandEntity> relationEntities = categoryBrandRelationService.getBrandsByCatId(catId);
+        List<BrandVo> resultList = relationEntities.stream().map(relation -> {
+            BrandVo brandVo = new BrandVo();
+            brandVo.setBrandId(relation.getBrandId());
+            brandVo.setBrandName(relation.getName());
+            return brandVo;
+        }).collect(Collectors.toList());
+        return R.ok().put("data", resultList);
     }
 
     /**

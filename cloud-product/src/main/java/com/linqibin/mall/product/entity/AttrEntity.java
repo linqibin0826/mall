@@ -4,12 +4,12 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
-import java.util.Date;
+
 import lombok.Data;
 
 /**
  * 商品属性
- * 
+ *
  * @author hugh
  * @email linqibin0826@gmail.com
  * @date 2021-01-08 22:12:57
@@ -51,7 +51,7 @@ public class AttrEntity implements Serializable {
 	/**
 	 * 所属分类
 	 */
-	private Long catalogId;
+	private Long catelogId;
 	/**
 	 * 快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整
 	 */

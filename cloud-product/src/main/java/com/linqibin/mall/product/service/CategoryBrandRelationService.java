@@ -2,8 +2,10 @@ package com.linqibin.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.linqibin.common.utils.PageUtils;
+import com.linqibin.mall.product.entity.BrandEntity;
 import com.linqibin.mall.product.entity.CategoryBrandRelationEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,5 +24,13 @@ public interface CategoryBrandRelationService extends IService<CategoryBrandRela
     void updateBrandName(Long brandId, String name);
 
     void updateCatalogName(Long catalogId, String name);
+
+    /**
+     * 根据分类id获取关联的品牌信息
+     *
+     * @param catId
+     * @return
+     */
+    List<BrandEntity> getBrandsByCatId(Long catId);
 }
 

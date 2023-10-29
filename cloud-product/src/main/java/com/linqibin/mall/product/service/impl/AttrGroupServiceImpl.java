@@ -14,6 +14,8 @@ import com.linqibin.mall.product.service.AttrAttrgroupRelationService;
 import com.linqibin.mall.product.service.AttrGroupService;
 import com.linqibin.mall.product.service.AttrService;
 import com.linqibin.mall.product.service.CategoryService;
+import com.linqibin.mall.product.vo.AttrGroupWithAttrsVo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -57,6 +59,28 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
                 queryWrapper);
         return new PageUtils(page);
 
+    }
+
+    /**
+     * 根据分类id 查出所有的分组以及这些组里边的属性
+     */
+    @Override
+    public List<AttrGroupWithAttrsVo> getAttrGroupWithAttrByCatelogId(Long catelogId) {
+
+        // 1.查询这个品牌id下所有分组
+        List<AttrGroupEntity> attrGroupEntities = this.list(new QueryWrapper<AttrGroupEntity>().eq("catelog_id", catelogId));
+
+        // 2.查询所有属性
+        List<AttrGroupWithAttrsVo> collect = attrGroupEntities.stream().map(group ->{
+            // 先对拷分组数据
+            AttrGroupWithAttrsVo attrVo = new AttrGroupWithAttrsVo();
+            BeanUtils.copyProperties(group, attrVo);
+            // 按照分组id查询所有关联属性并封装到vo
+            List<AttrEntity> attrs = attrService.getRelationAttr(attrVo.getAttrGroupId());
+            attrVo.setAttrs(attrs);
+            return attrVo;
+        }).collect(Collectors.toList());
+        return collect;
     }
 
     @Override

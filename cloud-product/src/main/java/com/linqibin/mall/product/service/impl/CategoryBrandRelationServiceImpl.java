@@ -8,7 +8,11 @@ import com.linqibin.mall.product.service.CategoryBrandRelationService;
 import com.linqibin.mall.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -41,14 +45,14 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     @Override
     public void saveDetail(CategoryBrandRelationEntity categoryBrandRelation) {
         Long brandId = categoryBrandRelation.getBrandId();
-        Long catalogId = categoryBrandRelation.getCatalogId();
+        Long catalogId = categoryBrandRelation.getCatelogId();
 
         // 分别查询名称
         BrandEntity brandEntity = brandService.getById(brandId);
         CategoryEntity categoryEntity = categoryService.getById(catalogId);
 
         categoryBrandRelation.setBrandName(brandEntity.getName());
-        categoryBrandRelation.setCatalogName(categoryEntity.getName());
+        categoryBrandRelation.setCatelogName(categoryEntity.getName());
 
         // 保存
         this.save(categoryBrandRelation);
@@ -66,6 +70,13 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     @Override
     public void updateCatalogName(Long catalogId, String name) {
         this.baseMapper.updateCatalogName(catalogId, name);
+    }
+
+    @Override
+    public List<BrandEntity> getBrandsByCatId(Long catId) {
+        List<CategoryBrandRelationEntity> relationByCatId = list(new QueryWrapper<CategoryBrandRelationEntity>()
+                .eq(CategoryBrandRelationEntity.CATALOG_ID, catId));
+        return relationByCatId.stream().map(relation -> brandService.getById(relation.getBrandId())).collect(Collectors.toList());
     }
 
 }
