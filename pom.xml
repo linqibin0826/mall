@@ -21,6 +21,7 @@
         <module>cloud-common</module>
         <module>cloud-gateway</module>
         <module>cloud-third-party</module>
+        <module>cloud-search</module>
     </modules>
 
 </project>

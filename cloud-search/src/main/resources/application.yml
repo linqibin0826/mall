@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: server.home.com:8848
+  application:
+    name: cloud-search
+server:
+  port: 9999
