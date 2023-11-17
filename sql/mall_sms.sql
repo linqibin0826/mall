@@ -18,6 +18,7 @@ create schema `mall_sms` collate utf8mb4_0900_ai_ci;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+USE `mall_sms`;
 
 -- ----------------------------
 -- Table structure for sms_coupon

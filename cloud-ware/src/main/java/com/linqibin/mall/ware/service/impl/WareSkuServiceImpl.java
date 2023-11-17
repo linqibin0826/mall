@@ -1,5 +1,6 @@
 package com.linqibin.mall.ware.service.impl;
 
+import com.linqibin.common.to.es.SkuHasStockVo;
 import com.linqibin.common.utils.R;
 import com.linqibin.mall.ware.feign.ProductFeignService;
 import com.linqibin.mall.ware.service.WareOrderTaskDetailService;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -95,4 +98,22 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         }
         return price;
     }
+
+    @Override
+    public List<SkuHasStockVo> getSkuHasStock(List<Long> skuIds) {
+        List<SkuHasStockVo> stockVos = this.baseMapper.querySkuHashStock(skuIds);
+        Map<Long, SkuHasStockVo> mapBySkuId = stockVos.stream().collect(Collectors.toMap(SkuHasStockVo::getSkuId, v -> v));
+        return skuIds.stream().map(skuId -> {
+            SkuHasStockVo stockVo = mapBySkuId.get(skuId);
+            if (stockVo != null) {
+                return stockVo;
+            } else {
+                SkuHasStockVo vo = new SkuHasStockVo();
+                vo.setSkuId(skuId);
+                vo.setHasStock(false);
+                return vo;
+            }
+        }).collect(Collectors.toList());
+    }
+
 }

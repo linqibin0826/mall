@@ -18,7 +18,7 @@ create schema `mall_wms` collate utf8mb4_0900_ai_ci;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
+use `mall_wms`;
 -- ----------------------------
 -- Table structure for undo_log
 -- ----------------------------

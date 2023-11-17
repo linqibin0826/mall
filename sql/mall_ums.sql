@@ -18,6 +18,7 @@ create schema mall_ums collate utf8mb4_0900_ai_ci;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+USE `mall_ums`;
 
 -- ----------------------------
 -- Table structure for ums_growth_change_history

@@ -27,7 +27,7 @@ public class MallExceptionControllerAdvice {
             String msg = item.getDefaultMessage();
             map.put(field, msg);
         });
-        return R.error(BizCodeEnum.VALID_EXCEPTION.getCode(), BizCodeEnum.VALID_EXCEPTION.getMsg())
+        return R.error(BizCodeEnum.VAILD_EXCEPTION.getCode(), BizCodeEnum.VAILD_EXCEPTION.getMsg())
                 .put("data", map);
     }
 
