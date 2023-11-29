@@ -3,6 +3,7 @@ package com.linqibin.mall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.linqibin.common.utils.PageUtils;
 import com.linqibin.mall.product.entity.CategoryEntity;
+import com.linqibin.mall.product.vo.Catelog2Vo;
 
 import java.util.List;
 import java.util.Map;
@@ -23,5 +24,9 @@ public interface CategoryService extends IService<CategoryEntity> {
     void removeCategoriesByIds(List<Long> asList);
 
     void updateCascade(CategoryEntity category);
+
+    List<CategoryEntity> queryLevelOneCategories();
+
+    Map<String, List<Catelog2Vo>> getCatalogJson();
 }
 

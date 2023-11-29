@@ -9,8 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * <p>Title: MallElasticSearchConfig</p>
- * Description：导入依赖
+ * <p>Title: ElasticSearchConfig</p>
+ * Description：1. 导入依赖
+ * 2. 注入Bean对象
  * API : https://www.elastic.co/guide/en/elasticsearch/client/java-rest/7.4/java-rest-high-supported-apis.html
  * date：2020/6/8 14:50
  */
@@ -22,6 +23,9 @@ public class MallElasticSearchConfig {
 
 	public static final RequestOptions COMMON_OPTIONS;
 
+	/**
+	 * 参考官方文档，发送每个ES请求都应加上这个东西
+	 */
 	static {
 		RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
 //		builder.addHeader("Authorization", "Bearer " + TOKEN);
@@ -37,8 +41,7 @@ public class MallElasticSearchConfig {
 	 */
 	@Bean
 	public RestHighLevelClient esRestClient() {
-		RestHighLevelClient client = new RestHighLevelClient(
+        return new RestHighLevelClient(
 				RestClient.builder(new HttpHost(host, 9200, "http")));
-		return client;
 	}
 }

@@ -12,6 +12,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>cloud-auth</module>
         <module>cloud-coupon</module>
         <module>cloud-member</module>
         <module>cloud-order</module>

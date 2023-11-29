@@ -42,7 +42,16 @@ spring:
           filters:
             # 路径重写,访问默认需要加上context-path
             - RewritePath=/api/(?<segment>/?.*), /renren-fast/$\{segment}
-
+        # 检索相关的请求
+        - id: gulimall-search
+          uri: lb://cloud-search
+          predicates:
+            - Host=search.gulimall.com
+        # 前台相关路由
+        - id: gulimall-front
+          uri: lb://cloud-product
+          predicates:
+            - Host=**.gulimall.com,gulimall.com
 
   application:
     name: cloud-gateway

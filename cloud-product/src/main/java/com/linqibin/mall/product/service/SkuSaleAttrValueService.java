@@ -3,7 +3,9 @@ package com.linqibin.mall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.linqibin.common.utils.PageUtils;
 import com.linqibin.mall.product.entity.SkuSaleAttrValueEntity;
+import com.linqibin.mall.product.vo.ItemSaleAttrVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +18,7 @@ import java.util.Map;
 public interface SkuSaleAttrValueService extends IService<SkuSaleAttrValueEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    List<ItemSaleAttrVo> getSaleAttrsBuSpuId(Long spuId);
 }
 

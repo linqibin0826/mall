@@ -6,6 +6,7 @@ import com.linqibin.mall.product.entity.AttrAttrgroupRelationEntity;
 import com.linqibin.mall.product.entity.AttrEntity;
 import com.linqibin.mall.product.entity.AttrGroupEntity;
 import com.linqibin.mall.product.vo.AttrGroupWithAttrsVo;
+import com.linqibin.mall.product.vo.SpuItemAttrGroup;
 
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,6 @@ public interface AttrGroupService extends IService<AttrGroupEntity> {
 
     void deleteRelations(List<AttrAttrgroupRelationEntity> relations);
 
-    void addRelation(List<AttrAttrgroupRelationEntity> relations);
+    List<SpuItemAttrGroup> getAttrGroupWithAttrsBySpuId(Long spuId, Long catalogId);
 }
 

@@ -3,6 +3,7 @@ package com.linqibin.mall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.linqibin.common.utils.PageUtils;
 import com.linqibin.mall.product.entity.AttrAttrgroupRelationEntity;
+import com.linqibin.mall.product.vo.AttrGroupRelationVo;
 
 import java.util.List;
 import java.util.Map;
@@ -19,5 +20,7 @@ public interface AttrAttrgroupRelationService extends IService<AttrAttrgroupRela
     PageUtils queryPage(Map<String, Object> params);
 
     void deleteBatchRelations(List<AttrAttrgroupRelationEntity> relations);
+
+    void saveBatch(List<AttrGroupRelationVo> vos);
 }
 

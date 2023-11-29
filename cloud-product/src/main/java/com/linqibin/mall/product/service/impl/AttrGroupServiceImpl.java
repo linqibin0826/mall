@@ -15,6 +15,7 @@ import com.linqibin.mall.product.service.AttrGroupService;
 import com.linqibin.mall.product.service.AttrService;
 import com.linqibin.mall.product.service.CategoryService;
 import com.linqibin.mall.product.vo.AttrGroupWithAttrsVo;
+import com.linqibin.mall.product.vo.SpuItemAttrGroup;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -116,7 +117,12 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
     }
 
     @Override
-    public void addRelation(List<AttrAttrgroupRelationEntity> relations) {
-        relationService.saveBatch(relations);
+    public List<SpuItemAttrGroup> getAttrGroupWithAttrsBySpuId(Long spuId, Long catalogId) {
+
+        // 1.出当前Spu对应的所有属性的分组信息 以及当前分组下所有属性对应的值
+        // 1.1 查询所有分组
+        AttrGroupDao baseMapper = this.getBaseMapper();
+
+        return baseMapper.getAttrGroupWithAttrsBySpuId(spuId, catalogId);
     }
 }

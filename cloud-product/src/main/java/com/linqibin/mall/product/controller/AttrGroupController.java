@@ -6,7 +6,9 @@ import java.util.Map;
 
 import com.linqibin.mall.product.entity.AttrAttrgroupRelationEntity;
 import com.linqibin.mall.product.entity.AttrEntity;
+import com.linqibin.mall.product.service.AttrAttrgroupRelationService;
 import com.linqibin.mall.product.service.AttrService;
+import com.linqibin.mall.product.vo.AttrGroupRelationVo;
 import com.linqibin.mall.product.vo.AttrGroupWithAttrsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,7 @@ import com.linqibin.mall.product.service.AttrGroupService;
 import com.linqibin.common.utils.PageUtils;
 import com.linqibin.common.utils.R;
 
+import javax.annotation.Resource;
 
 
 /**
@@ -33,6 +36,10 @@ public class AttrGroupController {
 
     @Autowired
     private AttrService attrService;
+
+    @Resource
+    private AttrAttrgroupRelationService relationService;
+
 
     /**
      * 查找指定属性分组Id下的所有基本属性
@@ -62,8 +69,8 @@ public class AttrGroupController {
     }
 
     @PostMapping("/attr/relation")
-    public R addRelation(@RequestBody List<AttrAttrgroupRelationEntity> relations) {
-        attrGroupService.addRelation(relations);
+    public R addRelation(@RequestBody List<AttrGroupRelationVo> relations) {
+        relationService.saveBatch(relations);
         return R.ok();
     }
 

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: cloud-auth
+  cloud:
+    nacos:
+      discovery:
+        server-addr: home.com:8848

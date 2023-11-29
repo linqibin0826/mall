@@ -13,8 +13,8 @@
     </resultMap>
 
     <update id="updateCatalogName">
-        update `pms_category_brand_relation` set catalog_name=#{catalogName}
-        where  catalog_id=#{catalogId}
+        update `pms_category_brand_relation` set catelog_name=#{catalogName}
+        where  catelog_id=#{catalogId}
     </update>
 
 
