@@ -10,6 +10,7 @@ package com.linqibin.common.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.linqibin.common.exception.BizCodeEnum;
 import com.linqibin.common.to.es.SkuHasStockVo;
 import org.apache.http.HttpStatus;
 
@@ -25,9 +26,15 @@ import java.util.Map;
 public class R extends HashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
 
+	public static final Integer CODE_SUCCESS = 0;
+
 	public R() {
 		put("code", 0);
 		put("msg", "success");
+	}
+
+	public static R error(BizCodeEnum bizCodeEnum) {
+		return error(bizCodeEnum.getCode(), bizCodeEnum.getMsg());
 	}
 
 	public static R error() {

@@ -2,7 +2,7 @@ package com.linqibin.mall.member.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.linqibin.common.utils.PageUtils;
-import com.linqibin.mall.member.entity.MemberLevelEntity;
+import com.linqibin.mall.member.domain.entity.MemberLevelEntity;
 
 import java.util.Map;
 
@@ -16,5 +16,11 @@ import java.util.Map;
 public interface MemberLevelService extends IService<MemberLevelEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 获取默认等级
+     * @return 默认等级
+     */
+    MemberLevelEntity getDefaultLevel();
 }
 

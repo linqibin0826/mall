@@ -4,7 +4,7 @@
 <mapper namespace="com.linqibin.mall.member.dao.UndoLogDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.linqibin.mall.member.entity.UndoLogEntity" id="undoLogMap">
+    <resultMap type="com.linqibin.mall.member.domain.entity.UndoLogEntity" id="undoLogMap">
         <result property="id" column="id"/>
         <result property="branchId" column="branch_id"/>
         <result property="xid" column="xid"/>

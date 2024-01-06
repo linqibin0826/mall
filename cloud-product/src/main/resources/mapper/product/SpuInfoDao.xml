@@ -17,6 +17,6 @@
     </resultMap>
 
     <update id="updateSpuStatus">
-        UPDATE `pms_spu_info` SET publish_status = #{code}, update_time = NOW() WHERE id = #{spuId}
+        UPDATE `PMS_SPU_INFO` SET PUBLISH_STATUS = #{code}, UPDATE_TIME = NOW() WHERE ID = #{spuId}
     </update>
 </mapper>

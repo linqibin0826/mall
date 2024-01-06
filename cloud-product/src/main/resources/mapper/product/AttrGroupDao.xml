@@ -3,33 +3,20 @@
 
 <mapper namespace="com.linqibin.mall.product.dao.AttrGroupDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.linqibin.mall.product.entity.AttrGroupEntity" id="attrGroupMap">
-        <result property="attrGroupId" column="attr_group_id"/>
-        <result property="attrGroupName" column="attr_group_name"/>
-        <result property="sort" column="sort"/>
-        <result property="descript" column="descript"/>
-        <result property="icon" column="icon"/>
-        <result property="catalogId" column="catalog_id"/>
-    </resultMap>
-
-
-    <!-- 封装自定义结果集 -->
-    <resultMap id="SpuItemAttrGroupVo" type="com.linqibin.mall.product.vo.SpuItemAttrGroup">
-        <result column="attr_group_name" property="groupName" javaType="string"></result>
-        <collection property="attrs" ofType="com.linqibin.mall.product.vo.SpuBaseAttrVo">
-            <result column="attr_name" property="attrName" javaType="string"></result>
-            <result column="attr_value" property="attrValue" javaType="string"></result>
+    <resultMap id="attrGroupWithAttrs" type="com.linqibin.mall.product.vo.SkuItemVo$SpuItemAttrGroupVo">
+        <result column="attr_group_name" property="groupName"/>
+        <collection property="attrs" ofType="com.linqibin.mall.product.vo.SkuItemVo$SpuBaseAttrVo">
+            <result column="attr_name" property="attrName"/>
+            <result column="attr_value" property="attrValue"/>
         </collection>
     </resultMap>
 
-    <select id="getAttrGroupWithAttrsBySpuId" resultMap="SpuItemAttrGroupVo">
-
-        SELECT pav.`spu_id`, ag.`attr_group_name`, ag.`attr_group_id`, aar.`attr_id`, attr.`attr_name`,pav.`attr_value`
-        FROM `pms_attr_group` ag
-        LEFT JOIN `pms_attr_attrgroup_relation` aar ON aar.`attr_group_id` = ag.`attr_group_id`
-        LEFT JOIN `pms_attr` attr ON attr.`attr_id` = aar.`attr_id`
-        LEFT JOIN `pms_product_attr_value` pav ON pav.`attr_id` = attr.`attr_id`
-        WHERE ag.catelog_id = #{catalogId} AND pav.`spu_id` = #{spuId}
+    <select id="queryAttrGroupsWithAttr" resultMap="attrGroupWithAttrs">
+        select a.attr_group_id,a.attr_group_name, ppav.attr_name, ppav.attr_value
+        from mall_pms.pms_attr_group a
+        join mall_pms.pms_spu_info s on s.catalog_id = a.catelog_id
+        left join pms_attr_attrgroup_relation paar on a.attr_group_id = paar.attr_group_id
+        left join mall_pms.pms_product_attr_value ppav on paar.attr_id = ppav.attr_id
+        where s.id = #{spuId} and ppav.spu_id = #{spuId};
     </select>
 </mapper>

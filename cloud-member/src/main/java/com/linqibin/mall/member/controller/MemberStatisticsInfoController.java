@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 // import org.apache.shiro.authz.annotation.RequiresPermissions;
-import com.linqibin.mall.member.entity.MemberStatisticsInfoEntity;
+import com.linqibin.mall.member.domain.entity.MemberStatisticsInfoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;

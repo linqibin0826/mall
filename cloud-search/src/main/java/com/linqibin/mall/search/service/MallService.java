@@ -12,7 +12,7 @@ import com.linqibin.mall.search.vo.SearchResult;
 public interface MallService {
 
 	/**
-	 * 检索所有参数
+	 * 搜索页面，检索
 	 */
 	SearchResult search(SearchParam Param);
 }

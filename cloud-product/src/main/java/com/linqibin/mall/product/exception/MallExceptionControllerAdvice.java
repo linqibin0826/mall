@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 全局异常处理
+ * @author linqibin
+ * @date   2023/12/28 23:13
+ * @email  1214219989@qq.com
+ */
 @RestControllerAdvice(basePackages = "com.linqibin.mall.product.controller")
 public class MallExceptionControllerAdvice {
 
@@ -30,10 +36,4 @@ public class MallExceptionControllerAdvice {
         return R.error(BizCodeEnum.VAILD_EXCEPTION.getCode(), BizCodeEnum.VAILD_EXCEPTION.getMsg())
                 .put("data", map);
     }
-
-    /*@ExceptionHandler(Throwable.class)
-    public R handleException(Throwable throwable) {
-        return R.error(BizCodeEnum.UNKNOWN_EXCEPTION.getCode(),
-                BizCodeEnum.UNKNOWN_EXCEPTION.getMsg());
-    }*/
 }

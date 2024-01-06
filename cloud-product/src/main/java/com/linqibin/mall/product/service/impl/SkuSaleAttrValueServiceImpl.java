@@ -1,7 +1,9 @@
 package com.linqibin.mall.product.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.google.common.collect.Lists;
 import com.linqibin.mall.product.service.SkuSaleAttrValueService;
-import com.linqibin.mall.product.vo.ItemSaleAttrVo;
+import com.linqibin.mall.product.vo.SkuItemVo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,10 +31,24 @@ public class SkuSaleAttrValueServiceImpl extends ServiceImpl<SkuSaleAttrValueDao
         return new PageUtils(page);
     }
 
-    @Override
-    public List<ItemSaleAttrVo> getSaleAttrsBuSpuId(Long spuId) {
 
-        SkuSaleAttrValueDao dao = this.baseMapper;
-        return dao.getSaleAttrsBuSpuId(spuId);
+    /**
+     * 找到指定spuId下所有的sku属性组合
+     * @param spuId
+     * @return
+     */
+    public List<SkuItemVo.SpuItemSaleAttrVo> listSpuSaleAttrsInfo(Long spuId) {
+        return baseMapper.querySpuSaleAttrs(spuId);
     }
+
+    @Override
+    public List<String> saleAttrStringListBySkuId(Long skuId) {
+        List<String> result = Lists.newArrayList();
+        List<SkuSaleAttrValueEntity> valueEntities = baseMapper.selectList(new LambdaQueryWrapper<SkuSaleAttrValueEntity>().eq(SkuSaleAttrValueEntity::getSkuId, skuId));
+        valueEntities.forEach(item -> {
+            result.add(item.getAttrName() + ":" + item.getAttrValue());
+        });
+        return result;
+    }
+
 }

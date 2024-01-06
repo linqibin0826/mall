@@ -15,31 +15,67 @@ import java.util.List;
 @Data
 public class SkuItemVo {
 
-	/**
-	 * 基本信息
-	 */
-	SkuInfoEntity info;
-
-	boolean hasStock = true;
+	private boolean hasStock;
 
 	/**
-	 * 图片信息
+	 * sku的基本信息
 	 */
-	List<SkuImagesEntity> images;
+	private SkuInfoEntity info;
 
 	/**
-	 * 销售属性组合
+	 * sku的图片信息
 	 */
-	List<ItemSaleAttrVo> saleAttr;
+	private List<SkuImagesEntity> images;
 
 	/**
-	 * 介绍
+	 * spu详情，同一类sku公用spu的详情
 	 */
-	SpuInfoDescEntity desc;
+	private SpuInfoDescEntity desp;
 
 	/**
-	 * 参数规格信息
+	 * sku的销售属性组合
 	 */
-	List<SpuItemAttrGroup> groupAttrs;
+	private List<SpuItemSaleAttrVo> saleAttr;
+
+	/**
+	 * spu的属性分组信息
+	 */
+	private List<SpuItemAttrGroupVo> groupAttrs;
+
+	/**
+	 * spu的销售属性组合信息
+	 */
+	@Data
+	public static class SpuItemSaleAttrVo {
+		private Long attrId;
+		private String attrName;
+		private List<AttrValueWithSkuIdVo> attrValues;
+	}
+
+	/**
+	 * 属性值及该属性值涉及的所有skuId
+	 * 用于商品详情页，多个属性值确定一个sku。
+	 */
+	@Data
+	public static class AttrValueWithSkuIdVo {
+
+		private String attrValue;
+
+		private String skuIds;
+	}
+
+	@Data
+	public static class SpuItemAttrGroupVo {
+		private String groupName;
+		private List<SpuBaseAttrVo> attrs;
+	}
+
+	@Data
+	public static class SpuBaseAttrVo {
+		private String attrName;
+
+		private String attrValue;
+	}
+
 
 }

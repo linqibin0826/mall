@@ -15,7 +15,7 @@ import com.linqibin.mall.product.service.AttrGroupService;
 import com.linqibin.mall.product.service.AttrService;
 import com.linqibin.mall.product.service.CategoryService;
 import com.linqibin.mall.product.vo.AttrGroupWithAttrsVo;
-import com.linqibin.mall.product.vo.SpuItemAttrGroup;
+import com.linqibin.mall.product.vo.SkuItemVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -95,7 +95,7 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
             parentCid = categoryService.getById(parentCid).getParentCid();
         }
         Collections.reverse(longs);
-        return longs.toArray(new Long[longs.size()]);
+        return longs.toArray(new Long[0]);
     }
 
     @Override
@@ -103,10 +103,8 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         List<AttrAttrgroupRelationEntity> relationEntities = relationService.list(new QueryWrapper<AttrAttrgroupRelationEntity>().eq("attr_group_id", attrGroupId));
 
         List<AttrEntity> attrEntities = null;
-        if (CollectionUtils.isEmpty(attrEntities)) {
-            List<Long> attrIds = relationEntities.stream().map(relation -> relation.getAttrId()).collect(Collectors.toList());
-            attrEntities = (List<AttrEntity>) attrService.listByIds(attrIds);
-        }
+        List<Long> attrIds = relationEntities.stream().map(AttrAttrgroupRelationEntity::getAttrId).collect(Collectors.toList());
+        attrEntities = (List<AttrEntity>) attrService.listByIds(attrIds);
 
         return attrEntities;
     }
@@ -117,12 +115,8 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
     }
 
     @Override
-    public List<SpuItemAttrGroup> getAttrGroupWithAttrsBySpuId(Long spuId, Long catalogId) {
-
-        // 1.出当前Spu对应的所有属性的分组信息 以及当前分组下所有属性对应的值
-        // 1.1 查询所有分组
-        AttrGroupDao baseMapper = this.getBaseMapper();
-
-        return baseMapper.getAttrGroupWithAttrsBySpuId(spuId, catalogId);
+    public List<SkuItemVo.SpuItemAttrGroupVo> listAttrGroupBySpuId(Long spuId) {
+        return baseMapper.queryAttrGroupsWithAttr(spuId);
     }
+
 }

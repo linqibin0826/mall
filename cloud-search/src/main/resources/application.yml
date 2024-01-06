@@ -2,9 +2,12 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: home.com:8848
+        server-addr: 192.168.1.200:8848
   application:
     name: cloud-search
+  redis:
+    password: 121421
+    host: 192.168.1.200
 server:
   port: 9999
-ipAddr: 192.168.31.200
+ipAddr: 192.168.1.200

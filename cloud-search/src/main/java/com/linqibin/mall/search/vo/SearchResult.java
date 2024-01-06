@@ -3,19 +3,18 @@ package com.linqibin.mall.search.vo;
 import com.linqibin.common.to.es.SkuEsModel;
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * <p>Title: SearchResponse</p>
  * Description：包含页面需要的所有信息
- * date：2020/6/12 23:29
+ * date：2023/12/02 23:29
  */
 @Data
 public class SearchResult {
 
 	/**
-	 * 查询到的所有商品信息
+	 * 检索到的sku商品信息
 	 */
 	private List<SkuEsModel> products;
 
@@ -24,80 +23,60 @@ public class SearchResult {
 	 */
 	private Integer pageNum;
 
-	/**
-	 * 总记录数
-	 */
-	private Long total;
+	private Integer pageSize;
 
-	/**
-	 * 总页码
-	 */
+	private Integer total;
+
 	private Integer totalPages;
 
 	/**
-	 * 当前查询到的结果,所有涉及到的品牌
+	 * 可继续检索的品牌列表
 	 */
 	private List<BrandVo> brands;
 
-	/**
-	 * 当前查询到的结果,所有涉及到的分类
-	 */
-	private List<CatalogVo> catalogs;
+	private List<CategoryVo> catalogs;
+
+	private List<AttrVo> attrs;
 
 	/**
 	 * 导航页
 	 */
 	private List<Integer> pageNavs;
 
-	/**
-	 * 当前查询的结果 所有涉及到所有属性
-	 */
-	private List<AttrVo> attrs;
-
-//	================以上是返回给页面的所有信息================
-
-	// 面包屑导航数据
-	private  List<NavVo> navs = new ArrayList<>();
+	private List<NavValueVo> navs;
 
 	/**
-	 * 便于判断当前id是否被使用
+	 * 面包屑导航功能
 	 */
-	private List<Long> attrIds = new ArrayList<>();
-
 	@Data
-	public static class NavVo{
+	public static class NavValueVo {
 		private String name;
 
 		private String navValue;
 
+		/**
+		 * 移除此面包屑后该跳往的连接
+		 */
 		private String link;
 	}
 
 	@Data
-	public static class BrandVo{
-
-		private Long brandId;
-
-		private String brandName;
-
-		private String brandImg;
-	}
-
-	@Data
-	public static class CatalogVo{
-
-		private Long catalogId;
-
-		private String catalogName;
-	}
-
-	@Data
-	public static class AttrVo{
-
+	public static class AttrVo {
 		private Long attrId;
 
 		private String attrName;
 
+		/**
+		 * 一个属性有多个可选值
+		 */
 		private List<String> attrValue;
+	}
+
+	@Data
+	public static class CategoryVo {
+
+		private String catalogId;
+
+		private String catalogName;
 	}
 }

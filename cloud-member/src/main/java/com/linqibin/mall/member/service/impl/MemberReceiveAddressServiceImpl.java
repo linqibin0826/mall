@@ -1,7 +1,7 @@
 package com.linqibin.mall.member.service.impl;
 
 import com.linqibin.mall.member.dao.MemberReceiveAddressDao;
-import com.linqibin.mall.member.entity.MemberReceiveAddressEntity;
+import com.linqibin.mall.member.domain.entity.MemberReceiveAddressEntity;
 import com.linqibin.mall.member.service.MemberReceiveAddressService;
 import org.springframework.stereotype.Service;
 import java.util.Map;

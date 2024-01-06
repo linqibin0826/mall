@@ -1,0 +1,696 @@
+{
+  "took": 6,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 9,
+      "relation": "eq"
+    },
+    "max_score": 0.0,
+    "hits": [
+      {
+        "_index": "product",
+        "_type": "_doc",
+        "_id": "wx-9KowBcsb9DlYiw8Ys",
+        "_score": 0.0,
+        "_source": {
+          "attrs": [
+            {
+              "attrId": 2,
+              "attrName": "上市年份",
+              "attrValue": "2020"
+            },
+            {
+              "attrId": 3,
+              "attrName": "颜色",
+              "attrValue": "流光幻镜"
+            },
+            {
+              "attrId": 1,
+              "attrName": "入网参数",
+              "attrValue": "5G"
+            },
+            {
+              "attrId": 9,
+              "attrName": "电池容量",
+              "attrValue": "5000mAh"
+            },
+            {
+              "attrId": 10,
+              "attrName": "机身长度(mm)",
+              "attrValue": "168"
+            },
+            {
+              "attrId": 7,
+              "attrName": "CPU型号",
+              "attrValue": "麒麟990"
+            },
+            {
+              "attrId": 8,
+              "attrName": "CPU工艺",
+              "attrValue": "5nm"
+            },
+            {
+              "attrId": 12,
+              "attrName": "CPU品牌",
+              "attrValue": "海思(Hisilicon)"
+            }
+          ],
+          "brandId": 2,
+          "brandImg": "",
+          "brandName": "华为",
+          "catalogId": 225,
+          "catalogName": "手机",
+          "hasStock": true,
+          "hotScore": 0,
+          "saleCount": 1454,
+          "skuId": 2,
+          "skuImg": "https://mall-fire.oss-cn-shenzhen.aliyuncs.com/2020-06-05/9915d4a7-9f73-4c71-85cc-65c0b7f644dd_图集2.jpg",
+          "skuPrice": 8888.0,
+          "skuTitle": "华为 HUAWEI P40 Pro+ 麒麟990 5G  流光幻镜 套餐二 麒麟990 5G SoC芯片 5000万超感知徕卡五摄 100倍双目变焦 全网通5G",
+          "spuId": 3
+        }
+      },
+      {
+        "_index": "product",
+        "_type": "_doc",
+        "_id": "xB-9KowBcsb9DlYiw8Ys",
+        "_score": 0.0,
+        "_source": {
+          "attrs": [
+            {
+              "attrId": 2,
+              "attrName": "上市年份",
+              "attrValue": "2020"
+            },
+            {
+              "attrId": 3,
+              "attrName": "颜色",
+              "attrValue": "流光幻镜"
+            },
+            {
+              "attrId": 1,
+              "attrName": "入网参数",
+              "attrValue": "5G"
+            },
+            {
+              "attrId": 9,
+              "attrName": "电池容量",
+              "attrValue": "5000mAh"
+            },
+            {
+              "attrId": 10,
+              "attrName": "机身长度(mm)",
+              "attrValue": "168"
+            },
+            {
+              "attrId": 7,
+              "attrName": "CPU型号",
+              "attrValue": "麒麟990"
+            },
+            {
+              "attrId": 8,
+              "attrName": "CPU工艺",
+              "attrValue": "5nm"
+            },
+            {
+              "attrId": 12,
+              "attrName": "CPU品牌",
+              "attrValue": "海思(Hisilicon)"
+            }
+          ],
+          "brandId": 2,
+          "brandImg": "",
+          "brandName": "华为",
+          "catalogId": 225,
+          "catalogName": "手机",
+          "hasStock": false,
+          "hotScore": 0,
+          "saleCount": 1673,
+          "skuId": 3,
+          "skuImg": "https://mall-fire.oss-cn-shenzhen.aliyuncs.com/2020-06-05/4d2ed8b5-5504-4bad-8620-75db9c29d3ea_图集4.jpg",
+          "skuPrice": 5988.0,
+          "skuTitle": "华为 HUAWEI P40 Pro+ 麒麟990 5G  流光幻镜 套餐二 麒麟990 5G SoC芯片 5000万超感知徕卡五摄 100倍双目变焦 全网通5G",
+          "spuId": 3
+        }
+      },
+      {
+        "_index": "product",
+        "_type": "_doc",
+        "_id": "xR-9KowBcsb9DlYiw8Ys",
+        "_score": 0.0,
+        "_source": {
+          "attrs": [
+            {
+              "attrId": 2,
+              "attrName": "上市年份",
+              "attrValue": "2020"
+            },
+            {
+              "attrId": 3,
+              "attrName": "颜色",
+              "attrValue": "流光幻镜"
+            },
+            {
+              "attrId": 1,
+              "attrName": "入网参数",
+              "attrValue": "5G"
+            },
+            {
+              "attrId": 9,
+              "attrName": "电池容量",
+              "attrValue": "5000mAh"
+            },
+            {
+              "attrId": 10,
+              "attrName": "机身长度(mm)",
+              "attrValue": "168"
+            },
+            {
+              "attrId": 7,
+              "attrName": "CPU型号",
+              "attrValue": "麒麟990"
+            },
+            {
+              "attrId": 8,
+              "attrName": "CPU工艺",
+              "attrValue": "5nm"
+            },
+            {
+              "attrId": 12,
+              "attrName": "CPU品牌",
+              "attrValue": "海思(Hisilicon)"
+            }
+          ],
+          "brandId": 2,
+          "brandImg": "",
+          "brandName": "华为",
+          "catalogId": 225,
+          "catalogName": "手机",
+          "hasStock": true,
+          "hotScore": 0,
+          "saleCount": 3587,
+          "skuId": 4,
+          "skuImg": "https://mall-fire.oss-cn-shenzhen.aliyuncs.com/2020-06-05/55871b9f-589b-4957-8eb3-9d2c8698406b_图集6.jpg",
+          "skuPrice": 5988.0,
+          "skuTitle": "华为 HUAWEI P40 Pro+ 麒麟990 5G  霓影紫 套餐二 麒麟990 5G SoC芯片 5000万超感知徕卡四摄 50倍数字变焦  全网通5G手机",
+          "spuId": 3
+        }
+      },
+      {
+        "_index": "product",
+        "_type": "_doc",
+        "_id": "xh-9KowBcsb9DlYiw8Ys",
+        "_score": 0.0,
+        "_source": {
+          "attrs": [
+            {
+              "attrId": 2,
+              "attrName": "上市年份",
+              "attrValue": "2020"
+            },
+            {
+              "attrId": 3,
+              "attrName": "颜色",
+              "attrValue": "流光幻镜"
+            },
+            {
+              "attrId": 1,
+              "attrName": "入网参数",
+              "attrValue": "5G"
+            },
+            {
+              "attrId": 9,
+              "attrName": "电池容量",
+              "attrValue": "5000mAh"
+            },
+            {
+              "attrId": 10,
+              "attrName": "机身长度(mm)",
+              "attrValue": "168"
+            },
+            {
+              "attrId": 7,
+              "attrName": "CPU型号",
+              "attrValue": "麒麟990"
+            },
+            {
+              "attrId": 8,
+              "attrName": "CPU工艺",
+              "attrValue": "5nm"
+            },
+            {
+              "attrId": 12,
+              "attrName": "CPU品牌",
+              "attrValue": "海思(Hisilicon)"
+            }
+          ],
+          "brandId": 2,
+          "brandImg": "",
+          "brandName": "华为",
+          "catalogId": 225,
+          "catalogName": "手机",
+          "hasStock": true,
+          "hotScore": 0,
+          "saleCount": 1235,
+          "skuId": 5,
+          "skuImg": "https://mall-fire.oss-cn-shenzhen.aliyuncs.com/2020-06-05/0bb896b8-fee8-4933-877c-2c4615c802d6_图集7.jpg",
+          "skuPrice": 5988.0,
+          "skuTitle": "华为 HUAWEI P40 Pro+ 麒麟990 5G  霓影紫 套餐二 麒麟990 5G SoC芯片 5000万超感知徕卡四摄 50倍数字变焦  全网通5G手机",
+          "spuId": 3
+        }
+      },
+      {
+        "_index": "product",
+        "_type": "_doc",
+        "_id": "xx-9KowBcsb9DlYiw8Ys",
+        "_score": 0.0,
+        "_source": {
+          "attrs": [
+            {
+              "attrId": 2,
+              "attrName": "上市年份",
+              "attrValue": "2020"
+            },
+            {
+              "attrId": 3,
+              "attrName": "颜色",
+              "attrValue": "流光幻镜"
+            },
+            {
+              "attrId": 1,
+              "attrName": "入网参数",
+              "attrValue": "5G"
+            },
+            {
+              "attrId": 9,
+              "attrName": "电池容量",
+              "attrValue": "5000mAh"
+            },
+            {
+              "attrId": 10,
+              "attrName": "机身长度(mm)",
+              "attrValue": "168"
+            },
+            {
+              "attrId": 7,
+              "attrName": "CPU型号",
+              "attrValue": "麒麟990"
+            },
+            {
+              "attrId": 8,
+              "attrName": "CPU工艺",
+              "attrValue": "5nm"
+            },
+            {
+              "attrId": 12,
+              "attrName": "CPU品牌",
+              "attrValue": "海思(Hisilicon)"
+            }
+          ],
+          "brandId": 2,
+          "brandImg": "",
+          "brandName": "华为",
+          "catalogId": 225,
+          "catalogName": "手机",
+          "hasStock": false,
+          "hotScore": 0,
+          "saleCount": 1456,
+          "skuId": 6,
+          "skuImg": "https://mall-fire.oss-cn-shenzhen.aliyuncs.com/2020-06-05/72b3962b-6a79-4d16-8c83-2f3f61dba176_图集5.jpg",
+          "skuPrice": 5988.0,
+          "skuTitle": "华为 HUAWEI P40 Pro+ 麒麟990 5G  霓影紫 套餐二 麒麟990 5G SoC芯片 5000万超感知徕卡四摄 50倍数字变焦  全网通5G手机",
+          "spuId": 3
+        }
+      },
+      {
+        "_index": "product",
+        "_type": "_doc",
+        "_id": "yB-9KowBcsb9DlYiw8Ys",
+        "_score": 0.0,
+        "_source": {
+          "attrs": [
+            {
+              "attrId": 2,
+              "attrName": "上市年份",
+              "attrValue": "2020"
+            },
+            {
+              "attrId": 3,
+              "attrName": "颜色",
+              "attrValue": "流光幻镜"
+            },
+            {
+              "attrId": 1,
+              "attrName": "入网参数",
+              "attrValue": "5G"
+            },
+            {
+              "attrId": 9,
+              "attrName": "电池容量",
+              "attrValue": "5000mAh"
+            },
+            {
+              "attrId": 10,
+              "attrName": "机身长度(mm)",
+              "attrValue": "168"
+            },
+            {
+              "attrId": 7,
+              "attrName": "CPU型号",
+              "attrValue": "麒麟990"
+            },
+            {
+              "attrId": 8,
+              "attrName": "CPU工艺",
+              "attrValue": "5nm"
+            },
+            {
+              "attrId": 12,
+              "attrName": "CPU品牌",
+              "attrValue": "海思(Hisilicon)"
+            }
+          ],
+          "brandId": 2,
+          "brandImg": "",
+          "brandName": "华为",
+          "catalogId": 225,
+          "catalogName": "手机",
+          "hasStock": false,
+          "hotScore": 0,
+          "saleCount": 2354,
+          "skuId": 7,
+          "skuImg": "https://mall-fire.oss-cn-shenzhen.aliyuncs.com/2020-06-05/9915d4a7-9f73-4c71-85cc-65c0b7f644dd_图集2.jpg",
+          "skuPrice": 5988.0,
+          "skuTitle": "华为 HUAWEI P40 Pro+ 麒麟990 5G  钛空银 套餐二 【白条12期免息送碎屏险】华为 P40 Pro 5G手机 分期",
+          "spuId": 3
+        }
+      },
+      {
+        "_index": "product",
+        "_type": "_doc",
+        "_id": "yR-9KowBcsb9DlYiw8Ys",
+        "_score": 0.0,
+        "_source": {
+          "attrs": [
+            {
+              "attrId": 2,
+              "attrName": "上市年份",
+              "attrValue": "2020"
+            },
+            {
+              "attrId": 3,
+              "attrName": "颜色",
+              "attrValue": "流光幻镜"
+            },
+            {
+              "attrId": 1,
+              "attrName": "入网参数",
+              "attrValue": "5G"
+            },
+            {
+              "attrId": 9,
+              "attrName": "电池容量",
+              "attrValue": "5000mAh"
+            },
+            {
+              "attrId": 10,
+              "attrName": "机身长度(mm)",
+              "attrValue": "168"
+            },
+            {
+              "attrId": 7,
+              "attrName": "CPU型号",
+              "attrValue": "麒麟990"
+            },
+            {
+              "attrId": 8,
+              "attrName": "CPU工艺",
+              "attrValue": "5nm"
+            },
+            {
+              "attrId": 12,
+              "attrName": "CPU品牌",
+              "attrValue": "海思(Hisilicon)"
+            }
+          ],
+          "brandId": 2,
+          "brandImg": "",
+          "brandName": "华为",
+          "catalogId": 225,
+          "catalogName": "手机",
+          "hasStock": false,
+          "hotScore": 0,
+          "saleCount": 2546,
+          "skuId": 8,
+          "skuImg": "https://mall-fire.oss-cn-shenzhen.aliyuncs.com/2020-06-05/0bb896b8-fee8-4933-877c-2c4615c802d6_图集7.jpg",
+          "skuPrice": 5988.0,
+          "skuTitle": "华为 HUAWEI P40 Pro+ 麒麟990 5G  钛空银 套餐三 【白条12期免息送碎屏险】华为 P40 Pro 5G手机 分期",
+          "spuId": 3
+        }
+      },
+      {
+        "_index": "product",
+        "_type": "_doc",
+        "_id": "yh-9KowBcsb9DlYiw8Ys",
+        "_score": 0.0,
+        "_source": {
+          "attrs": [
+            {
+              "attrId": 2,
+              "attrName": "上市年份",
+              "attrValue": "2020"
+            },
+            {
+              "attrId": 3,
+              "attrName": "颜色",
+              "attrValue": "流光幻镜"
+            },
+            {
+              "attrId": 1,
+              "attrName": "入网参数",
+              "attrValue": "5G"
+            },
+            {
+              "attrId": 9,
+              "attrName": "电池容量",
+              "attrValue": "5000mAh"
+            },
+            {
+              "attrId": 10,
+              "attrName": "机身长度(mm)",
+              "attrValue": "168"
+            },
+            {
+              "attrId": 7,
+              "attrName": "CPU型号",
+              "attrValue": "麒麟990"
+            },
+            {
+              "attrId": 8,
+              "attrName": "CPU工艺",
+              "attrValue": "5nm"
+            },
+            {
+              "attrId": 12,
+              "attrName": "CPU品牌",
+              "attrValue": "海思(Hisilicon)"
+            }
+          ],
+          "brandId": 2,
+          "brandImg": "",
+          "brandName": "华为",
+          "catalogId": 225,
+          "catalogName": "手机",
+          "hasStock": false,
+          "hotScore": 0,
+          "saleCount": 957,
+          "skuId": 9,
+          "skuImg": "https://mall-fire.oss-cn-shenzhen.aliyuncs.com/2020-06-05/e5ba78ec-9cf5-4bbd-86a7-ad2f611e2512_图集1.jpg",
+          "skuPrice": 4188.0,
+          "skuTitle": "华为 HUAWEI P40 Pro+ 麒麟990 5G  钛空银 套餐一 【白条12期免息送碎屏险】华为 P40 Pro 5G手机 分期",
+          "spuId": 3
+        }
+      }
+    ]
+  },
+  "aggregations": {
+    "nested#attrAgg": {
+      "doc_count": 72,
+      "lterms#attrIdAgg": {
+        "doc_count_error_upper_bound": 0,
+        "sum_other_doc_count": 0,
+        "buckets": [
+          {
+            "key": 1,
+            "doc_count": 9,
+            "sterms#attrValueAgg": {
+              "doc_count_error_upper_bound": 0,
+              "sum_other_doc_count": 0,
+              "buckets": [
+                {
+                  "key": "5G",
+                  "doc_count": 9
+                }
+              ]
+            }
+          },
+          {
+            "key": 2,
+            "doc_count": 9,
+            "sterms#attrValueAgg": {
+              "doc_count_error_upper_bound": 0,
+              "sum_other_doc_count": 0,
+              "buckets": [
+                {
+                  "key": "2020",
+                  "doc_count": 9
+                }
+              ]
+            }
+          },
+          {
+            "key": 3,
+            "doc_count": 9,
+            "sterms#attrValueAgg": {
+              "doc_count_error_upper_bound": 0,
+              "sum_other_doc_count": 0,
+              "buckets": [
+                {
+                  "key": "流光幻镜",
+                  "doc_count": 9
+                }
+              ]
+            }
+          },
+          {
+            "key": 7,
+            "doc_count": 9,
+            "sterms#attrValueAgg": {
+              "doc_count_error_upper_bound": 0,
+              "sum_other_doc_count": 0,
+              "buckets": [
+                {
+                  "key": "麒麟990",
+                  "doc_count": 9
+                }
+              ]
+            }
+          },
+          {
+            "key": 8,
+            "doc_count": 9,
+            "sterms#attrValueAgg": {
+              "doc_count_error_upper_bound": 0,
+              "sum_other_doc_count": 0,
+              "buckets": [
+                {
+                  "key": "5nm",
+                  "doc_count": 9
+                }
+              ]
+            }
+          },
+          {
+            "key": 9,
+            "doc_count": 9,
+            "sterms#attrValueAgg": {
+              "doc_count_error_upper_bound": 0,
+              "sum_other_doc_count": 0,
+              "buckets": [
+                {
+                  "key": "5000mAh",
+                  "doc_count": 9
+                }
+              ]
+            }
+          },
+          {
+            "key": 10,
+            "doc_count": 9,
+            "sterms#attrValueAgg": {
+              "doc_count_error_upper_bound": 0,
+              "sum_other_doc_count": 0,
+              "buckets": [
+                {
+                  "key": "168",
+                  "doc_count": 9
+                }
+              ]
+            }
+          },
+          {
+            "key": 12,
+            "doc_count": 9,
+            "sterms#attrValueAgg": {
+              "doc_count_error_upper_bound": 0,
+              "sum_other_doc_count": 0,
+              "buckets": [
+                {
+                  "key": "海思(Hisilicon)",
+                  "doc_count": 9
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "lterms#brandAgg": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": 2,
+          "doc_count": 9,
+          "sterms#brandImgAgg": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+              {
+                "key": "",
+                "doc_count": 9
+              }
+            ]
+          },
+          "sterms#brandNameAgg": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+              {
+                "key": "华为",
+                "doc_count": 9
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "lterms#catalogAgg": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": 225,
+          "doc_count": 9,
+          "sterms#catalogName": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+              {
+                "key": "手机",
+                "doc_count": 9
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

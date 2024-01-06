@@ -19,10 +19,11 @@
 
     <select id="querySkuHashStock" parameterType="java.util.List"
             resultType="com.linqibin.common.to.es.SkuHasStockVo">
-        SELECT sku_id, IF((sum(stock) - sum(stock_locked)) > 0, TRUE, FALSE) AS hasStock FROM `wms_ware_sku` WHERE sku_id in
+        SELECT SKU_ID, IF((SUM(STOCK) - SUM(STOCK_LOCKED)) > 0, TRUE, FALSE) AS hasStock
+        FROM `WMS_WARE_SKU` WHERE SKU_ID IN
         <foreach collection="list" open="(" close=")" separator="," item="item">
             #{item}
         </foreach>
-        group by sku_id
+        GROUP BY SKU_ID
     </select>
 </mapper>

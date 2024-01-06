@@ -2,7 +2,10 @@ package com.linqibin.mall.member.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.linqibin.common.utils.PageUtils;
-import com.linqibin.mall.member.entity.MemberEntity;
+import com.linqibin.mall.member.domain.dto.MemberRegisterDTO;
+import com.linqibin.mall.member.domain.dto.OauthLoginDTO;
+import com.linqibin.mall.member.domain.dto.UserLoginDTO;
+import com.linqibin.mall.member.domain.entity.MemberEntity;
 
 import java.util.Map;
 
@@ -16,5 +19,21 @@ import java.util.Map;
 public interface MemberService extends IService<MemberEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 注册
+     * @param registerDTO 注册信息
+     */
+    void register(MemberRegisterDTO registerDTO);
+
+    MemberEntity login(UserLoginDTO userLoginDTO);
+
+    /**
+     * 社交账号登录
+     *
+     * @param oauthLoginDTO 社交账号登录信息
+     * @return
+     */
+    MemberEntity login(OauthLoginDTO oauthLoginDTO);
 }
 

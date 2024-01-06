@@ -1,14 +1,11 @@
 package com.linqibin.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.linqibin.mall.product.entity.SkuSaleAttrValueEntity;
 import com.linqibin.mall.product.service.SkuSaleAttrValueService;
@@ -38,6 +35,12 @@ public class SkuSaleAttrValueController {
         PageUtils page = skuSaleAttrValueService.queryPage(params);
 
         return R.ok().put("page", page);
+    }
+
+    @GetMapping("/stringList/{skuId}")
+    public R saleAttrStringList(@PathVariable("skuId") Long skuId) {
+        List<String> result =  skuSaleAttrValueService.saleAttrStringListBySkuId(skuId);
+        return R.ok().setData(result);
     }
 
 

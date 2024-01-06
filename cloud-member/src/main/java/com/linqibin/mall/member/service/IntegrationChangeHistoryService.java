@@ -2,7 +2,7 @@ package com.linqibin.mall.member.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.linqibin.common.utils.PageUtils;
-import com.linqibin.mall.member.entity.IntegrationChangeHistoryEntity;
+import com.linqibin.mall.member.domain.entity.IntegrationChangeHistoryEntity;
 
 import java.util.Map;
 

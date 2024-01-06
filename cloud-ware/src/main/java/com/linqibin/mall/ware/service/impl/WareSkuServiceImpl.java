@@ -66,7 +66,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
      * wareId: 仓库id
      * return 返回商品价格
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public double addStock(Long skuId, Long wareId, Integer skuNum) {
         // 1.如果还没有这个库存记录 那就是新增操作
@@ -102,6 +102,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
     @Override
     public List<SkuHasStockVo> getSkuHasStock(List<Long> skuIds) {
         List<SkuHasStockVo> stockVos = this.baseMapper.querySkuHashStock(skuIds);
+        // 需要考虑如果库存表中没有被查询的skuId的库存信息，需要补充上一个Vo对象
         Map<Long, SkuHasStockVo> mapBySkuId = stockVos.stream().collect(Collectors.toMap(SkuHasStockVo::getSkuId, v -> v));
         return skuIds.stream().map(skuId -> {
             SkuHasStockVo stockVo = mapBySkuId.get(skuId);

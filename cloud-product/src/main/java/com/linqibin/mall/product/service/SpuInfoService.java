@@ -28,5 +28,9 @@ public interface SpuInfoService extends IService<SpuInfoEntity> {
 
     void saveBatchSpuInfo(SpuInfoEntity spuInfoEntity);
 
+    /**
+     * 将指定spu下的所有sku上架（存储到es）
+     * @param spuId        待上架商品id
+     */
     void up(Long spuId);
 }

@@ -1,5 +1,6 @@
 package com.linqibin.mall.product.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.linqibin.mall.product.service.ProductAttrValueService;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,8 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao
 
     @Override
     public List<ProductAttrValueEntity> baseAttrListForSpu(Long spuId) {
-        return this.baseMapper.selectList(new QueryWrapper<ProductAttrValueEntity>().eq("spu_id", spuId));
+        return this.baseMapper.selectList(new LambdaQueryWrapper<ProductAttrValueEntity>()
+                .eq(ProductAttrValueEntity::getSpuId, spuId));
     }
 
 }

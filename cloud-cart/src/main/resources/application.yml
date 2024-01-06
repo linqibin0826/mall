@@ -1,0 +1,25 @@
+server:
+  port: 9000
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.200
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/mall_pms
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  redis:
+    password: 121421
+    host: 192.168.1.200
+
+  application:
+    name: cloud-cart
+
+gulimall:
+  thread:
+    core-size: 12
+    max-size: 24
+    keep-alive-time: 10

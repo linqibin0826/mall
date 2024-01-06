@@ -2,7 +2,7 @@ package com.linqibin.mall.product.dao;
 
 import com.linqibin.mall.product.entity.SkuSaleAttrValueEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.linqibin.mall.product.vo.ItemSaleAttrVo;
+import com.linqibin.mall.product.vo.SkuItemVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,5 +18,10 @@ import java.util.List;
 @Mapper
 public interface SkuSaleAttrValueDao extends BaseMapper<SkuSaleAttrValueEntity> {
 
-    List<ItemSaleAttrVo> getSaleAttrsBuSpuId(@Param("spuId") Long spuId);
+    /**
+     * 根据spuId查询所有的销售属性、将销售属性的值用逗号拼接起来
+     * @param spuId
+     * @return
+     */
+    List<SkuItemVo.SpuItemSaleAttrVo> querySpuSaleAttrs(Long spuId);
 }

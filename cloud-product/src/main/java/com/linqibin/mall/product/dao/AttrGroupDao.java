@@ -2,7 +2,7 @@ package com.linqibin.mall.product.dao;
 
 import com.linqibin.mall.product.entity.AttrGroupEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.linqibin.mall.product.vo.SpuItemAttrGroup;
+import com.linqibin.mall.product.vo.SkuItemVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,5 +18,10 @@ import java.util.List;
 @Mapper
 public interface AttrGroupDao extends BaseMapper<AttrGroupEntity> {
 
-    List<SpuItemAttrGroup> getAttrGroupWithAttrsBySpuId(@Param("spuId") Long spuId, @Param("catalogId") Long catalogId);
+    /**
+     * 根据spuId查询spu的所有属性属性分组和组内信息
+     * @param spuId
+     * @return
+     */
+    List<SkuItemVo.SpuItemAttrGroupVo> queryAttrGroupsWithAttr(Long spuId);
 }

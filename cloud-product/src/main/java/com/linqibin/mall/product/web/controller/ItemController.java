@@ -25,7 +25,7 @@ public class ItemController {
     private SkuInfoService skuInfoService;
 
     @RequestMapping("/{skuId}.html")
-    public String skuItem(@PathVariable("skuId") Long skuId, Model model) throws ExecutionException, InterruptedException {
+    public String skuItem(@PathVariable("skuId") Long skuId, Model model) {
 
         SkuItemVo vo = skuInfoService.item(skuId);
 

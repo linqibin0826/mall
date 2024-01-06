@@ -10,6 +10,7 @@ import org.elasticsearch.action.bulk.BulkItemResponse;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.stereotype.Service;
@@ -39,23 +40,14 @@ public class ProductSaveServiceImpl implements ProductSaveService {
 	@Override
 	public boolean productStatusUp(List<SkuEsModel> skuEsModels) throws IOException {
 		// 1.给ES建立一个索引 product
-		BulkRequest bulkRequest = new BulkRequest();
-		// 2.构造保存请求
+		BulkRequest request = new BulkRequest();
 		for (SkuEsModel esModel : skuEsModels) {
 			IndexRequest indexRequest = new IndexRequest(EsConstant.PRODUCT_INDEX);
-			// 设置索引id
-			indexRequest.id(esModel.getSkuId().toString());
-			String jsonString = JSON.toJSONString(esModel);
-			indexRequest.source(jsonString, XContentType.JSON);
-			bulkRequest.add(indexRequest);
+			String esJson = JSON.toJSONString(esModel);
+			indexRequest.source(esJson, XContentType.JSON);
+			request.add(indexRequest);
 		}
-		BulkResponse bulk = client.bulk(bulkRequest, MallElasticSearchConfig.COMMON_OPTIONS);
-		// TODO 是否拥有错误
-		boolean hasFailures = bulk.hasFailures();
-		if(hasFailures){
-			List<String> collect = Arrays.stream(bulk.getItems()).map(BulkItemResponse::getId).collect(Collectors.toList());
-			log.error("商品上架错误：{}",collect);
-		}
-		return hasFailures;
-	}
+		BulkResponse bulk = client.bulk(request, RequestOptions.DEFAULT);
+        return !bulk.hasFailures();
+    }
 }

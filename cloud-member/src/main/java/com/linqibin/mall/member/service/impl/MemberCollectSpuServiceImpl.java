@@ -1,7 +1,7 @@
 package com.linqibin.mall.member.service.impl;
 
 import com.linqibin.mall.member.dao.MemberCollectSpuDao;
-import com.linqibin.mall.member.entity.MemberCollectSpuEntity;
+import com.linqibin.mall.member.domain.entity.MemberCollectSpuEntity;
 import com.linqibin.mall.member.service.MemberCollectSpuService;
 import org.springframework.stereotype.Service;
 import java.util.Map;

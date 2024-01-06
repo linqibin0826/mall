@@ -1,5 +1,6 @@
 package com.linqibin.mall.product.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.linqibin.mall.product.service.SkuImagesService;
 import org.springframework.stereotype.Service;
 
@@ -32,9 +33,8 @@ public class SkuImagesServiceImpl extends ServiceImpl<SkuImagesDao, SkuImagesEnt
 
     @Override
     public List<SkuImagesEntity> getImagesBySkuId(Long skuId) {
-
         SkuImagesDao dao = this.baseMapper;
-        return dao.selectList(new QueryWrapper<SkuImagesEntity>().eq("sku_id", skuId));
+        return dao.selectList(new LambdaQueryWrapper<SkuImagesEntity>().eq(SkuImagesEntity::getSkuId, skuId));
     }
 
 }

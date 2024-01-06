@@ -1,7 +1,7 @@
 package com.linqibin.mall.member.service.impl;
 
 import com.linqibin.mall.member.dao.IntegrationChangeHistoryDao;
-import com.linqibin.mall.member.entity.IntegrationChangeHistoryEntity;
+import com.linqibin.mall.member.domain.entity.IntegrationChangeHistoryEntity;
 import com.linqibin.mall.member.service.IntegrationChangeHistoryService;
 import org.springframework.stereotype.Service;
 import java.util.Map;

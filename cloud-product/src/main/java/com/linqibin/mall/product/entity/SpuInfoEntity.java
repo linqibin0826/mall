@@ -10,7 +10,7 @@ import lombok.Data;
 
 /**
  * spu信息
- * 
+ *
  * @author hugh
  * @email linqibin0826@gmail.com
  * @date 2021-01-08 22:12:57
@@ -42,19 +42,21 @@ public class SpuInfoEntity implements Serializable {
 	 */
 	private Long brandId;
 	/**
-	 * 
+	 *
 	 */
 	private BigDecimal weight;
 	/**
 	 * 上架状态[0 - 下架，1 - 上架]
 	 */
 	private Integer publishStatus;
+	public static final Integer STATUS_UP = 1;
+	public static final Integer STATUS_DOWN = 0;
 	/**
-	 * 
+	 *
 	 */
 	private Date createTime;
 	/**
-	 * 
+	 *
 	 */
 	private Date updateTime;
 

@@ -1,7 +1,7 @@
 package com.linqibin.mall.member.service.impl;
 
 import com.linqibin.mall.member.dao.GrowthChangeHistoryDao;
-import com.linqibin.mall.member.entity.GrowthChangeHistoryEntity;
+import com.linqibin.mall.member.domain.entity.GrowthChangeHistoryEntity;
 import com.linqibin.mall.member.service.GrowthChangeHistoryService;
 import org.springframework.stereotype.Service;
 import java.util.Map;

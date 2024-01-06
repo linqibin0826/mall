@@ -4,7 +4,7 @@
 <mapper namespace="com.linqibin.mall.member.dao.MemberReceiveAddressDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.linqibin.mall.member.entity.MemberReceiveAddressEntity" id="memberReceiveAddressMap">
+    <resultMap type="com.linqibin.mall.member.domain.entity.MemberReceiveAddressEntity" id="memberReceiveAddressMap">
         <result property="id" column="id"/>
         <result property="memberId" column="member_id"/>
         <result property="name" column="name"/>

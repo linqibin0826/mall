@@ -1,0 +1,68 @@
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match_all": {}
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "brandAgg": {
+      "terms": {
+        "field": "brandId",
+        "size": 20
+      },
+      "aggs": {
+        "brandNameAgg": {
+          "terms": {
+            "field": "brandName",
+            "size": 20
+          }
+        },
+        "brandImgAgg": {
+          "terms": {
+            "field": "brandImg",
+            "size": 10
+          }
+        }
+      }
+    },
+    "catalogAgg": {
+      "terms": {
+        "field": "catalogId",
+        "size": 20
+      },
+      "aggs": {
+        "catalogNameAgg": {
+          "terms": {
+            "field": "catalogName",
+            "size": 20
+          }
+        }
+      }
+    },
+    "attrAgg": {
+      "nested": {
+        "path": "attrs"
+      },
+      "aggs": {
+        "attrIdAgg": {
+          "terms": {
+            "field": "attrs.attrId",
+            "size": 10
+          },
+          "aggs": {
+            "attrValueAgg": {
+              "terms": {
+                "field": "attrs.attrValue",
+                "size": 10
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

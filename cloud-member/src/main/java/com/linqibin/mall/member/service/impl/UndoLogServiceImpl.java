@@ -1,7 +1,7 @@
 package com.linqibin.mall.member.service.impl;
 
 import com.linqibin.mall.member.dao.UndoLogDao;
-import com.linqibin.mall.member.entity.UndoLogEntity;
+import com.linqibin.mall.member.domain.entity.UndoLogEntity;
 import com.linqibin.mall.member.service.UndoLogService;
 import org.springframework.stereotype.Service;
 import java.util.Map;

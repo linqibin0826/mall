@@ -2,12 +2,12 @@ package com.linqibin.mall.member.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.linqibin.common.utils.PageUtils;
-import com.linqibin.mall.member.entity.UndoLogEntity;
+import com.linqibin.mall.member.domain.entity.UndoLogEntity;
 
 import java.util.Map;
 
 /**
- * 
+ *
  *
  * @author hugh
  * @email linqibin0826@gmail.com

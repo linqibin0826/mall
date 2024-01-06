@@ -23,6 +23,7 @@
         <module>cloud-gateway</module>
         <module>cloud-third-party</module>
         <module>cloud-search</module>
+        <module>cloud-cart</module>
     </modules>
 
 </project>

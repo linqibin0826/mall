@@ -11,5 +11,10 @@ public class BrandVo {
      */
     private Long brandId;
 
-    private String  brandName;
+    private String brandName;
+
+    /**
+     * 品牌图片信息
+     */
+    private String brandImg;
 }

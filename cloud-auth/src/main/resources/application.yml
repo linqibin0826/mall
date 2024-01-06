@@ -4,4 +4,25 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: home.com:8848
+        server-addr: 192.168.1.200:8848
+  thymeleaf:
+    cache: false
+  redis:
+    host: 192.168.1.200
+    password: 121421
+  session:
+    store-type: redis
+    timeout: 30m
+server:
+  port: 20000
+
+justauth:
+  enabled: true
+  type:
+    GITEE:
+      clientId: 94fe5258625f1e938c16fd630504ec96ed03b150a66aa1c164112173377e67ec
+      clientSecret: 11e379eb20b1d3ab2da5e09c9ed7034fa01bf308b24fa646b54772ec455fda47
+      redirect-uri: http://auth.gulimall.com/oauth/gitee/callback
+  cache:
+    type: default
+

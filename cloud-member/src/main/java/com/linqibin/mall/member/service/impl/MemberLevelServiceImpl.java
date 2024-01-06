@@ -1,7 +1,8 @@
 package com.linqibin.mall.member.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.linqibin.mall.member.dao.MemberLevelDao;
-import com.linqibin.mall.member.entity.MemberLevelEntity;
+import com.linqibin.mall.member.domain.entity.MemberLevelEntity;
 import com.linqibin.mall.member.service.MemberLevelService;
 import org.springframework.stereotype.Service;
 import java.util.Map;
@@ -23,6 +24,12 @@ public class MemberLevelServiceImpl extends ServiceImpl<MemberLevelDao, MemberLe
         );
 
         return new PageUtils(page);
+    }
+
+    @Override
+    public MemberLevelEntity getDefaultLevel() {
+        return baseMapper.selectOne(new LambdaQueryWrapper<MemberLevelEntity>()
+                .eq(MemberLevelEntity::getDefaultStatus, MemberLevelEntity.DEFAULT_STATUS));
     }
 
 }

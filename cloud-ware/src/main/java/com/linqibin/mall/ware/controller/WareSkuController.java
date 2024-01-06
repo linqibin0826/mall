@@ -29,16 +29,6 @@ public class WareSkuController {
     @Autowired
     private WareSkuService wareSkuService;
 
-//    @PostMapping("/lock/order")
-//    public R orderLockStock(@RequestBody WareSkuLockVo vo){
-//		try {
-//			wareSkuService.orderLockStock(vo);
-//			return R.ok();
-//		} catch (NotStockException e) {
-//			log.warn("\n" + e.getMessage());
-//		}
-//		return R.error(BizCodeEnum.NOT_STOCK_EXCEPTION.getCode(), BizCodeEnum.NOT_STOCK_EXCEPTION.getMsg());
-//	}
 
 	/**
 	 * 查询sku是否有库存

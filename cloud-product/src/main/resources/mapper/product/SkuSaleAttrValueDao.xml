@@ -13,19 +13,23 @@
         <result property="attrSort" column="attr_sort"/>
     </resultMap>
 
-    <resultMap id="SkuItemSaleAttrVo" type="com.linqibin.mall.product.vo.ItemSaleAttrVo">
-        <result column="attr_id" property="attrId"></result>
-        <result column="attr_name" property="attrName"></result>
-        <collection property="attrValues" ofType="com.linqibin.mall.product.vo.AttrValueWithSkuIdVo">
-            <result column="attr_value" property="attrValue"></result>
-            <result column="sku_ids" property="skuIds"></result>
+    <resultMap id="saleAttrValueWithSkuIds" type="com.linqibin.mall.product.vo.SkuItemVo$SpuItemSaleAttrVo">
+        <result property="attrId" column="attr_id"/>
+        <result property="attrName" column="attr_name"/>
+        <collection property="attrValues" ofType="com.linqibin.mall.product.vo.SkuItemVo$AttrValueWithSkuIdVo">
+            <result property="attrValue" column="attr_value"/>
+            <result property="skuIds" column="skuIds"/>
         </collection>
     </resultMap>
 
-    <select id="getSaleAttrsBuSpuId" resultMap="SkuItemSaleAttrVo">
-        SELECT ssav.`attr_id`,ssav.`attr_name`,ssav.`attr_value`,GROUP_CONCAT(DISTINCT info.`sku_id`) sku_ids
-        FROM `pms_sku_info` INFO LEFT JOIN `pms_sku_sale_attr_value` ssav ON ssav.`sku_id` = info.`sku_id`
-        WHERE info.`spu_id` = #{spuId} GROUP BY ssav.`attr_id`,ssav.`attr_name`,ssav.`attr_value`
+
+    <!--查询指定spu的所有销售属性，并且将此属性值涉及的所有skuId也查询出-->
+    <select id="querySpuSaleAttrs" resultMap="saleAttrValueWithSkuIds">
+        select saleAttrs.attr_id, saleAttrs.attr_name, saleAttrs.attr_value, group_concat(saleAttrs.sku_id) as skuIds
+        from pms_sku_info sku
+                 join pms_sku_sale_attr_value saleAttrs on sku.sku_id = saleAttrs.sku_id
+        where spu_id = #{spuId}
+        group by attr_id, attr_name, attr_value
     </select>
 
 

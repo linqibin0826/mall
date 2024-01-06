@@ -39,9 +39,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     @Resource(name = "stringRedisTemplate")
     private StringRedisTemplate redisTemplate;
 
-    @Resource
-    private RedissonClient redissonClient;
-
     @Autowired
     CategoryBrandRelationService categoryBrandRelationService;
 

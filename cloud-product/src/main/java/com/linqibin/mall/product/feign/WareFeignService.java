@@ -1,5 +1,7 @@
 package com.linqibin.mall.product.feign;
 
+
+import com.linqibin.common.to.es.SkuHasStockVo;
 import com.linqibin.common.utils.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,16 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 /**
- * <p>Title: WareFeignService</p>
- * Description：
- * date：2020/6/8 20:26
+ *
+ * @author linqibin
+ * @date    2023/12/1 23:45
+ * @email  1214219989@qq.com
  */
 @FeignClient("cloud-ware")
 public interface WareFeignService {
 
-	/**
-	 * 修改真个系统的 R 带上泛型
-	 */
-	@PostMapping("/ware/waresku/hasStock")
-	R getSkuHasStock(@RequestBody List<Long> SkuIds);
+    @PostMapping("/ware/waresku/hasStock")
+    R getSkuHasStock(@RequestBody List<Long> skuIds);
 }

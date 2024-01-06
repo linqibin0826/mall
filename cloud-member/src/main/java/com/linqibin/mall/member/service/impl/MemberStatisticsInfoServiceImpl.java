@@ -1,7 +1,7 @@
 package com.linqibin.mall.member.service.impl;
 
 import com.linqibin.mall.member.dao.MemberStatisticsInfoDao;
-import com.linqibin.mall.member.entity.MemberStatisticsInfoEntity;
+import com.linqibin.mall.member.domain.entity.MemberStatisticsInfoEntity;
 import com.linqibin.mall.member.service.MemberStatisticsInfoService;
 import org.springframework.stereotype.Service;
 import java.util.Map;

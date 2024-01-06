@@ -6,7 +6,7 @@ import com.linqibin.mall.product.entity.AttrAttrgroupRelationEntity;
 import com.linqibin.mall.product.entity.AttrEntity;
 import com.linqibin.mall.product.entity.AttrGroupEntity;
 import com.linqibin.mall.product.vo.AttrGroupWithAttrsVo;
-import com.linqibin.mall.product.vo.SpuItemAttrGroup;
+import com.linqibin.mall.product.vo.SkuItemVo;
 
 import java.util.List;
 import java.util.Map;
@@ -48,6 +48,11 @@ public interface AttrGroupService extends IService<AttrGroupEntity> {
 
     void deleteRelations(List<AttrAttrgroupRelationEntity> relations);
 
-    List<SpuItemAttrGroup> getAttrGroupWithAttrsBySpuId(Long spuId, Long catalogId);
+    /**
+     * 根据spuId查询出封装好的属性分组名称以及组内的属性名称和属性值
+     * @param spuId       商品id
+     * @return            属性分组vo
+     */
+    List<SkuItemVo.SpuItemAttrGroupVo> listAttrGroupBySpuId(Long spuId);
 }
 
