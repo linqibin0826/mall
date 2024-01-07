@@ -4,16 +4,16 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.1.200
+        server-addr: 192.168.1.12:8848
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://127.0.0.1:3306/mall_pms
+    url: jdbc:mysql://192.168.1.12:53316/mall_pms
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   redis:
     password: 121421
-    host: 192.168.1.200
+    host: 192.168.1.12
 
   application:
     name: cloud-cart

@@ -2,7 +2,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.1.200:8848
+        server-addr: 192.168.1.12:8848
     gateway:
       routes:
         - id: member_route
@@ -58,6 +58,11 @@ spring:
           uri: lb://cloud-cart
           predicates:
             - Host=cart.gulimall.com
+        # 订单模块
+        - id: gulimall-order
+          uri: lb://cloud-order
+          predicates:
+            - Host=order.gulimall.com
 
         # 前台相关路由
         - id: gulimall-front
